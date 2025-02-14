@@ -4,6 +4,7 @@ import { slugify, getReceitasSlugs } from '../../utils/receitas'
 
 export default function ReceitaPage({ receita, receitasRelacionadas }) {
   const cardBg = useColorModeValue('white', 'gray.800')
+  const baseUrl = 'https://receitas-git-main-purfazzs-projects.vercel.app'
 
   if (!receita) {
     return <Box>Receita não encontrada</Box>
@@ -12,15 +13,21 @@ export default function ReceitaPage({ receita, receitasRelacionadas }) {
   return (
     <>
       <Head>
-        <title>{`${receita.nome} - Receita do Dia`}</title>
-        <meta name="description" content={`Aprenda a fazer ${receita.nome} de forma fácil e deliciosa. Receita completa com ingredientes e modo de preparo.`} />
-        <meta name="keywords" content={`receita ${receita.nome.toLowerCase()}, como fazer ${receita.nome.toLowerCase()}, receita fácil, culinária`} />
-        <link rel="canonical" href={`https://receitas-random.vercel.app/receitas/${receita.slug}`} />
+        <title>{`${receita.nome} - Receita Fácil e Deliciosa | Receita do Dia`}</title>
+        <meta 
+          name="description" 
+          content={`Aprenda a fazer ${receita.nome} de forma fácil e deliciosa. Receita completa com lista de ingredientes, modo de preparo passo a passo e dicas. Tempo de preparo: ${receita.tempoPreparo}.`} 
+        />
+        <meta 
+          name="keywords" 
+          content={`${receita.nome.toLowerCase()}, como fazer ${receita.nome.toLowerCase()}, receita de ${receita.nome.toLowerCase()}, receita fácil, culinária, passo a passo ${receita.nome.toLowerCase()}`} 
+        />
+        <link rel="canonical" href={`${baseUrl}/receitas/${receita.slug}`} />
         
-        <meta property="og:title" content={`${receita.nome} - Receita do Dia`} />
-        <meta property="og:description" content={`Aprenda a fazer ${receita.nome} de forma fácil e deliciosa. Receita completa com ingredientes e modo de preparo.`} />
+        <meta property="og:title" content={`${receita.nome} - Receita Fácil e Deliciosa | Receita do Dia`} />
+        <meta property="og:description" content={`Aprenda a fazer ${receita.nome} de forma fácil e deliciosa. Receita completa com ingredientes e modo de preparo passo a passo.`} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://receitas-random.vercel.app/receitas/${receita.slug}`} />
+        <meta property="og:url" content={`${baseUrl}/receitas/${receita.slug}`} />
         
         <script type="application/ld+json">
           {JSON.stringify({
@@ -29,17 +36,31 @@ export default function ReceitaPage({ receita, receitasRelacionadas }) {
             "name": receita.nome,
             "image": receita.imagem,
             "description": `Aprenda a fazer ${receita.nome} de forma fácil e deliciosa`,
-            "keywords": `receita, ${receita.nome}, culinária, receita fácil`,
+            "keywords": `${receita.nome.toLowerCase()}, receita, culinária, como fazer`,
             "author": {
               "@type": "Organization",
               "name": "Receita do Dia"
             },
-            "prepTime": receita.tempoPreparo,
+            "datePublished": new Date().toISOString().split('T')[0],
+            "prepTime": `PT${receita.tempoPreparo.split(' ')[0]}M`,
+            "cookTime": `PT${receita.tempoPreparo.split(' ')[0]}M`,
+            "totalTime": `PT${receita.tempoPreparo.split(' ')[0]}M`,
             "recipeYield": receita.porcoes,
             "recipeCategory": "Prato Principal",
-            "recipeCuisine": "Brasileira",
+            "recipeCuisine": "Portuguesa",
             "recipeIngredient": receita.ingredientes,
-            "recipeInstructions": receita.modoPreparo.split('\n')
+            "recipeInstructions": receita.modoPreparo.split('\n').map(step => ({
+              "@type": "HowToStep",
+              "text": step
+            })),
+            "nutrition": {
+              "@type": "NutritionInformation",
+              "servingSize": "1 porção"
+            },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": `${baseUrl}/receitas/${receita.slug}`
+            }
           })}
         </script>
       </Head>

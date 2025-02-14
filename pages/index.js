@@ -21,26 +21,29 @@ export default function Home({ receitas }) {
   return (
     <>
       <Head>
-        <title>Receita do Dia - Descubra Receitas Deliciosas</title>
-        <meta name="description" content="Descubra uma nova receita deliciosa todos os dias! Receitas simples e saborosas para seu dia a dia." />
-        <meta name="keywords" content="receita do dia, receitas fáceis, culinária, receitas simples, receitas rápidas" />
-        <meta property="og:title" content="Receita do Dia - Descubra Receitas Deliciosas" />
-        <meta property="og:description" content="Descubra uma nova receita deliciosa todos os dias! Receitas simples e saborosas para seu dia a dia." />
+        <title>Receita do Dia - Descubra Receitas Deliciosas e Fáceis de Fazer</title>
+        <meta name="description" content="Encontre receitas deliciosas e fáceis de fazer todos os dias. Receitas caseiras, práticas e testadas para seu almoço, jantar ou sobremesa. Instruções passo a passo!" />
+        <meta name="keywords" content="receita do dia, receitas fáceis, receitas caseiras, receitas práticas, receitas rápidas, culinária, como fazer, receitas portuguesas, receitas simples" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Receita do Dia - Descubra Receitas Deliciosas e Fáceis de Fazer" />
+        <meta property="og:description" content="Encontre receitas deliciosas e fáceis de fazer todos os dias. Receitas caseiras, práticas e testadas para seu almoço, jantar ou sobremesa." />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://seu-dominio.com/og-image.jpg" />
-        <meta property="og:url" content="https://seu-dominio.com" />
+        <meta property="og:url" content="https://receitas-git-main-purfazzs-projects.vercel.app" />
         <meta property="og:site_name" content="Receita do Dia" />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Receita do Dia - Descubra Receitas Deliciosas" />
-        <meta name="twitter:description" content="Descubra uma nova receita deliciosa todos os dias! Receitas simples e saborosas para seu dia a dia." />
-        <meta name="twitter:image" content="https://seu-dominio.com/twitter-card.jpg" />
+        <meta name="twitter:description" content="Encontre receitas deliciosas e fáceis de fazer todos os dias. Receitas caseiras e práticas!" />
         
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://receitas-git-main-purfazzs-projects.vercel.app" />
         
         {/* Schema.org para Rich Snippets */}
         <script type="application/ld+json">
@@ -49,11 +52,11 @@ export default function Home({ receitas }) {
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "Receita do Dia",
-              "description": "Descubra receitas deliciosas diariamente",
-              "url": "https://seu-dominio.com",
+              "description": "Descubra receitas deliciosas e práticas todos os dias",
+              "url": "https://receitas-git-main-purfazzs-projects.vercel.app",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://seu-dominio.com/search?q={search_term_string}",
+                "target": "https://receitas-git-main-purfazzs-projects.vercel.app/search?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             }
@@ -63,19 +66,26 @@ export default function Home({ receitas }) {
           {`
             {
               "@context": "https://schema.org",
-              "@type": "Recipe",
-              "name": "Receitas Diárias",
-              "description": "Descubra receitas deliciosas todos os dias",
-              "keywords": "receitas, culinária, receitas fáceis, receitas rápidas",
-              "author": {
-                "@type": "Organization",
-                "name": "Receita do Dia"
-              },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.8",
-                "reviewCount": "100"
-              }
+              "@type": "ItemList",
+              "itemListElement": [
+                ${receitas.map((receita, index) => `{
+                  "@type": "ListItem",
+                  "position": ${index + 1},
+                  "item": {
+                    "@type": "Recipe",
+                    "name": "${receita.nome}",
+                    "description": "Aprenda a fazer ${receita.nome} de forma fácil e deliciosa",
+                    "cookTime": "${receita.tempoPreparo}",
+                    "recipeYield": "${receita.porcoes}",
+                    "recipeIngredient": ${JSON.stringify(receita.ingredientes)},
+                    "recipeInstructions": "${receita.modoPreparo.replace(/\n/g, ' ')}",
+                    "author": {
+                      "@type": "Organization",
+                      "name": "Receita do Dia"
+                    }
+                  }
+                }`).join(',')}
+              ]
             }
           `}
         </script>

@@ -1,13 +1,15 @@
-# Allow all crawlers
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
 Allow: /receitas/*
-
-# Block access to API routes
+Allow: /sobre
 Disallow: /api/*
-
-# Block access to admin routes
 Disallow: /admin/*
+Disallow: /_next/*
+Disallow: /static/*
 
-# Sitemap location
-Sitemap: https://receitas-git-main-purfazzs-projects.vercel.app/sitemap.xml.xml 
+# Crawl-delay
+Crawl-delay: 10
+
+# Sitemap
+Sitemap: https://receitas-git-main-purfazzs-projects.vercel.app/sitemap.xml 
