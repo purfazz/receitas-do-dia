@@ -12,12 +12,18 @@ class MyDocument extends Document {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "url": "${baseUrl}",
-      "name": "Receita do Dia - Gerador de Receitas Online",
-      "description": "🎲 Gerador de Receitas Online Grátis! Clique e descubra uma receita deliciosa para fazer hoje. Mais de 20 receitas caseiras com passo a passo.",
+      "name": "Receita do Dia - receitas passo a passo e dicas culinárias",
+      "description": "Aqui você encontra receitas passo a passo, dicas culinárias e tudo sobre gastronomia. Receitas práticas para o dia a dia, ideais para refeições fáceis e deliciosas.",
       "inLanguage": "pt-BR",
-      "keywords": "gerador de receitas, receitas aleatórias, receitas online, receitas grátis, receitas caseiras, receitas fáceis",
+      "keywords": "receitas passo a passo, dicas culinárias, gastronomia, receitas práticas, massas, saladas, lanches simples, refeições fáceis",
       "genre": "Culinária e Gastronomia",
       "isFamilyFriendly": "True",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "BRL",
+        "availability": "https://schema.org/InStock"
+      },
       "potentialAction": [{
         "@type": "SearchAction",
         "target": "${baseUrl}/search?q={search_term_string}",
@@ -43,6 +49,11 @@ class MyDocument extends Document {
             "name": "Receitas",
             "item": "${baseUrl}"
           }]
+        },
+        "about": {
+          "@type": "Thing",
+          "name": "Receitas e Dicas Culinárias",
+          "description": "Receitas passo a passo e dicas essenciais para um dia a dia saudável e cheio de sabor. Aprenda a preparar pratos deliciosos de forma simples e prática."
         }
       }
     }`
@@ -71,12 +82,16 @@ class MyDocument extends Document {
           <meta name="author" content="Receita do Dia" />
           <meta name="copyright" content="© 2024 Receita do Dia" />
           <meta name="format-detection" content="telephone=no" />
-          <meta name="description" content="🎲 Gerador de Receitas Online Grátis! Clique e descubra uma receita deliciosa para fazer hoje. 🥘 Mais de 20 receitas caseiras com passo a passo. Lasanha, Strogonoff, Bolos e muito mais!" />
+          <meta name="description" content="Aqui você encontra receitas passo a passo, dicas culinárias e tudo sobre gastronomia. Receitas práticas para o dia a dia: massas, saladas e lanches simples. Ideais para refeições fáceis e deliciosas, prontas em poucos minutos!" />
           
           {/* Open Graph padrão */}
           <meta property="og:site_name" content="Receita do Dia" />
           <meta property="og:type" content="website" />
-          <meta property="og:description" content="🎲 Gerador de Receitas Online Grátis! Clique e descubra uma receita deliciosa para fazer hoje. 🥘 Mais de 20 receitas caseiras com passo a passo. Lasanha, Strogonoff, Bolos e muito mais!" />
+          <meta property="og:title" content="Receita do Dia - receitas passo a passo e dicas culinárias" />
+          <meta property="og:description" content="Aqui você encontra receitas passo a passo, dicas culinárias e tudo sobre gastronomia. Receitas práticas para o dia a dia: massas, saladas e lanches simples. Ideais para refeições fáceis e deliciosas!" />
+          
+          {/* Meta tags adicionais para SEO */}
+          <meta name="keywords" content="receitas passo a passo, dicas culinárias, gastronomia, receitas práticas, massas, saladas, lanches simples, refeições fáceis, receitas rápidas, culinária" />
           
           {/* Twitter Cards padrão */}
           <meta name="twitter:card" content="summary_large_image" />
