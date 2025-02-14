@@ -6,7 +6,6 @@ export default function Document() {
       <Head>
         {/* Meta tags básicas */}
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#319795" />
         
         {/* Favicons */}
@@ -27,12 +26,11 @@ export default function Document() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@receitadodia" />
         
-        {/* Google AdSense */}
+        {/* Google AdSense - Código exato fornecido pelo Google */}
         <script 
           async 
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5527070421339032"
           crossOrigin="anonymous"
-          data-site-url="https://receitadodia.vercel.app"
         />
 
         {/* Preconnect para recursos externos */}
