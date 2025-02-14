@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { Box, Button, Container, Heading, Text, VStack, useColorModeValue } from '@chakra-ui/react'
 import { useState } from 'react'
 import AdComponent from '../components/AdComponent'
+import CTASection from '../components/CTASection'
 
 export default function Home({ receitas }) {
   const [receitaDoDia, setReceitaDoDia] = useState(null)
@@ -256,6 +257,8 @@ export default function Home({ receitas }) {
                 </Box>
               </Box>
             )}
+
+            {!receitaDoDia && <CTASection />}
           </VStack>
         </Container>
       </Box>
@@ -551,6 +554,77 @@ export async function getStaticProps() {
         "Molho de tamarindo"
       ],
       modoPreparo: "1. Hidrate o macarrão\n2. Prepare o molho\n3. Refogue os ingredientes\n4. Misture tudo\n5. Finalize com amendoim"
+    },
+    {
+      nome: "Bacalhau à Brás",
+      tempoPreparo: "45 minutos",
+      porcoes: "4 porções",
+      dificuldade: "Médio",
+      imagem: "https://source.unsplash.com/featured/?cod,fish",
+      ingredientes: [
+        "400g de bacalhau desfiado",
+        "500g de batata palha",
+        "6 ovos",
+        "2 cebolas grandes",
+        "3 dentes de alho",
+        "Salsa picada",
+        "Azeitonas pretas",
+        "Azeite",
+        "Sal e pimenta a gosto"
+      ],
+      modoPreparo: "1. Refogue a cebola e o alho no azeite\n2. Adicione o bacalhau e refogue\n3. Junte a batata palha\n4. Bata os ovos e adicione\n5. Mexa até os ovos estarem cozidos\n6. Finalize com salsa e azeitonas"
+    },
+    {
+      nome: "Bolo de Cenoura com Cobertura de Chocolate",
+      tempoPreparo: "50 minutos",
+      porcoes: "12 fatias",
+      dificuldade: "Fácil",
+      imagem: "https://source.unsplash.com/featured/?carrot,cake",
+      ingredientes: [
+        "3 cenouras médias",
+        "4 ovos",
+        "1 xícara de óleo",
+        "2 xícaras de açúcar",
+        "2 xícaras de farinha de trigo",
+        "1 colher de fermento",
+        "200g de chocolate meio amargo",
+        "1 lata de creme de leite"
+      ],
+      modoPreparo: "1. Bata no liquidificador as cenouras, ovos e óleo\n2. Misture com açúcar e farinha\n3. Adicione o fermento\n4. Asse por 40 minutos\n5. Para a cobertura, derreta o chocolate\n6. Misture com creme de leite\n7. Cubra o bolo"
+    },
+    {
+      nome: "Caldo Verde",
+      tempoPreparo: "60 minutos",
+      porcoes: "6 porções",
+      dificuldade: "Fácil",
+      imagem: "https://source.unsplash.com/featured/?soup,green",
+      ingredientes: [
+        "1kg de batatas",
+        "400g de couve portuguesa",
+        "2 cebolas",
+        "3 dentes de alho",
+        "200g de linguiça portuguesa",
+        "Azeite",
+        "Sal a gosto"
+      ],
+      modoPreparo: "1. Cozinhe as batatas com as cebolas\n2. Bata no liquidificador\n3. Corte a couve em tiras finas\n4. Frite a linguiça\n5. Adicione a couve ao caldo\n6. Finalize com azeite"
+    },
+    {
+      nome: "Pastel de Nata",
+      tempoPreparo: "90 minutos",
+      porcoes: "12 unidades",
+      dificuldade: "Difícil",
+      imagem: "https://source.unsplash.com/featured/?pastry,custard",
+      ingredientes: [
+        "Massa folhada",
+        "500ml de leite",
+        "6 gemas",
+        "200g de açúcar",
+        "Casca de limão",
+        "Canela em pau",
+        "2 colheres de farinha"
+      ],
+      modoPreparo: "1. Prepare o creme com leite e gemas\n2. Forre forminhas com massa folhada\n3. Preencha com o creme\n4. Asse em forno muito quente\n5. Polvilhe com canela"
     }
   ]
 
