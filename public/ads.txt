@@ -1,2 +1,2 @@
-# Arquivo ads.txt para receitasdodia.vercel.app
+# Arquivo ads.txt para receitadodia.vercel.app
 google.com, pub-5527070421339032, DIRECT, f08c47fec0942fa0 

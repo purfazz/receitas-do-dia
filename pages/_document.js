@@ -7,7 +7,7 @@ class MyDocument extends Document {
   }
 
   render() {
-    const baseUrl = 'https://receitasdodia.vercel.app'
+    const baseUrl = 'https://receitadodia.vercel.app'
     const schemaOrgWebsite = {
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -84,7 +84,7 @@ class MyDocument extends Document {
           />
 
           {/* Google Analytics */}
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-DFLX0F5RND"></script>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-DFLX0F5RND" />
           <script
             dangerouslySetInnerHTML={{
               __html: `
@@ -102,17 +102,17 @@ class MyDocument extends Document {
               `
             }}
           />
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
+
           {/* Google AdSense */}
           <script 
             async 
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5527070421339032"
             crossOrigin="anonymous"
-            strategy="afterInteractive"
           />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
         </body>
       </Html>
     )
