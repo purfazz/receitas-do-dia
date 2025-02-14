@@ -14,7 +14,7 @@ export default function ReceitaPage({ receita, receitasRelacionadas }) {
     "@context": "https://schema.org",
     "@type": "Recipe",
     "name": receita.nome,
-    "image": [receita.imagem],
+    "image": receita.imagem,
     "description": `Aprenda a fazer ${receita.nome} de forma fácil e deliciosa`,
     "keywords": `${receita.nome.toLowerCase()}, receita, culinária, como fazer`,
     "author": {
@@ -73,7 +73,46 @@ export default function ReceitaPage({ receita, receitasRelacionadas }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(schemaOrgRecipe)
+            __html: `{
+              "@context": "https://schema.org",
+              "@type": "Recipe",
+              "name": "${receita.nome}",
+              "image": ${JSON.stringify(receita.imagem)},
+              "description": "Aprenda a fazer ${receita.nome} de forma fácil e deliciosa",
+              "keywords": "${receita.nome.toLowerCase()}, receita, culinária, como fazer",
+              "author": {
+                "@type": "Organization",
+                "name": "Receita do Dia"
+              },
+              "datePublished": "${new Date().toISOString().split('T')[0]}",
+              "prepTime": "PT${receita.tempoPreparo.split(' ')[0]}M",
+              "cookTime": "PT${receita.tempoPreparo.split(' ')[0]}M",
+              "totalTime": "PT${receita.tempoPreparo.split(' ')[0]}M",
+              "recipeYield": "${receita.porcoes}",
+              "recipeCategory": "Prato Principal",
+              "recipeCuisine": "Portuguesa",
+              "recipeIngredient": ${JSON.stringify(receita.ingredientes)},
+              "recipeInstructions": ${JSON.stringify(receita.modoPreparo.split('\n').map(step => ({
+                "@type": "HowToStep",
+                "text": step.replace(/^\d+\.\s*/, ''),
+                "position": parseInt(step.match(/^\d+/)?.[0] || "1")
+              })))},
+              "nutrition": {
+                "@type": "NutritionInformation",
+                "servingSize": "1 porção"
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "5",
+                "reviewCount": "1",
+                "bestRating": "5",
+                "worstRating": "1"
+              },
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "${baseUrl}/receitas/${receita.slug}"
+              }
+            }`
           }}
         />
       </Head>

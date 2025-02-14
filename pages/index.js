@@ -47,9 +47,10 @@ export default function Home({ receitas }) {
         <link rel="canonical" href="https://receitadodia.vercel.app" />
         
         {/* Schema.org para Rich Snippets */}
-        <script type="application/ld+json">
-          {`
-            {
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: `{
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "Receita do Dia",
@@ -70,42 +71,38 @@ export default function Home({ receitas }) {
               },
               "mainEntity": {
                 "@type": "ItemList",
-                "itemListElement": [
-                  ${receitas.map((receita, index) => `{
-                    "@type": "ListItem",
-                    "position": ${index + 1},
-                    "item": {
-                      "@type": "Recipe",
-                      "name": "${receita.nome}",
-                      "description": "Aprenda a fazer ${receita.nome} de forma fácil e deliciosa",
-                      "cookTime": "PT${receita.tempoPreparo.split(' ')[0]}M",
-                      "recipeYield": "${receita.porcoes}",
-                      "recipeCategory": "Prato Principal",
-                      "recipeCuisine": "Portuguesa",
-                      "recipeIngredient": ${JSON.stringify(receita.ingredientes)},
-                      "recipeInstructions": ${JSON.stringify(
-                        receita.modoPreparo.split('\n').map(step => ({
-                          "@type": "HowToStep",
-                          "text": step.replace(/^\d+\.\s*/, '')
-                        }))
-                      )},
-                      "author": {
-                        "@type": "Organization",
-                        "name": "Receita do Dia"
-                      },
-                      "datePublished": "${new Date().toISOString().split('T')[0]}",
-                      "image": "${receita.imagem}",
-                      "nutrition": {
-                        "@type": "NutritionInformation",
-                        "servingSize": "1 porção"
-                      }
+                "itemListElement": ${JSON.stringify(receitas.map((receita, index) => ({
+                  "@type": "ListItem",
+                  "position": index + 1,
+                  "item": {
+                    "@type": "Recipe",
+                    "name": receita.nome,
+                    "description": `Aprenda a fazer ${receita.nome} de forma fácil e deliciosa`,
+                    "cookTime": `PT${receita.tempoPreparo.split(' ')[0]}M`,
+                    "recipeYield": receita.porcoes,
+                    "recipeCategory": "Prato Principal",
+                    "recipeCuisine": "Portuguesa",
+                    "recipeIngredient": receita.ingredientes,
+                    "recipeInstructions": receita.modoPreparo.split('\n').map(step => ({
+                      "@type": "HowToStep",
+                      "text": step.replace(/^\d+\.\s*/, '')
+                    })),
+                    "author": {
+                      "@type": "Organization",
+                      "name": "Receita do Dia"
+                    },
+                    "datePublished": new Date().toISOString().split('T')[0],
+                    "image": receita.imagem,
+                    "nutrition": {
+                      "@type": "NutritionInformation",
+                      "servingSize": "1 porção"
                     }
-                  }`).join(',')}
-                ]
+                  }
+                })))}
               }
-            }
-          `}
-        </script>
+            }`
+          }}
+        />
       </Head>
 
       <Box 

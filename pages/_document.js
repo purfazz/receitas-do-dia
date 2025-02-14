@@ -8,16 +8,16 @@ class MyDocument extends Document {
 
   render() {
     const baseUrl = 'https://receitadodia.vercel.app'
-    const schemaOrgWebsite = {
+    const jsonLd = `{
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "url": baseUrl,
+      "url": "${baseUrl}",
       "name": "Receita do Dia",
       "description": "Descubra receitas deliciosas e fáceis de fazer todos os dias",
       "inLanguage": "pt-BR",
       "potentialAction": [{
         "@type": "SearchAction",
-        "target": `${baseUrl}/search?q={search_term_string}`,
+        "target": "${baseUrl}/search?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }],
       "publisher": {
@@ -25,12 +25,12 @@ class MyDocument extends Document {
         "name": "Receita do Dia",
         "logo": {
           "@type": "ImageObject",
-          "url": `${baseUrl}/logo.png`,
+          "url": "${baseUrl}/logo.png",
           "width": "180",
           "height": "180"
         }
       }
-    }
+    }`
 
     return (
       <Html lang="pt">
@@ -79,7 +79,7 @@ class MyDocument extends Document {
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
-              __html: JSON.stringify(schemaOrgWebsite)
+              __html: jsonLd
             }}
           />
 
