@@ -42,6 +42,36 @@ export default function Document() {
         {/* DNS Prefetch */}
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+
+        {/* Schema.org WebSite */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "url": "https://receitas-git-main-purfazzs-projects.vercel.app",
+              "name": "Receita do Dia",
+              "description": "Descubra receitas deliciosas e fáceis de fazer todos os dias",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://receitas-git-main-purfazzs-projects.vercel.app/search?q={search_term_string}"
+                },
+                "query-input": "required name=search_term_string"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "Receita do Dia",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://receitas-git-main-purfazzs-projects.vercel.app/logo.png"
+                }
+              }
+            })
+          }}
+        />
       </Head>
       
       {/* Google Analytics com consentimento padrão negado */}
