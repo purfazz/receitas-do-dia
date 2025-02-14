@@ -7,16 +7,17 @@ class MyDocument extends Document {
   }
 
   render() {
+    const baseUrl = 'https://receitasdodia.vercel.app'
     const schemaOrgWebsite = {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "url": "https://receitas-git-main-purfazzs-projects.vercel.app",
+      "url": baseUrl,
       "name": "Receita do Dia",
       "description": "Descubra receitas deliciosas e fáceis de fazer todos os dias",
       "inLanguage": "pt-BR",
       "potentialAction": [{
         "@type": "SearchAction",
-        "target": "https://receitas-git-main-purfazzs-projects.vercel.app/search?q={search_term_string}",
+        "target": `${baseUrl}/search?q={search_term_string}`,
         "query-input": "required name=search_term_string"
       }],
       "publisher": {
@@ -24,7 +25,7 @@ class MyDocument extends Document {
         "name": "Receita do Dia",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://receitas-git-main-purfazzs-projects.vercel.app/logo.png",
+          "url": `${baseUrl}/logo.png`,
           "width": "180",
           "height": "180"
         }
@@ -42,8 +43,8 @@ class MyDocument extends Document {
           {/* Meta tags de idioma e região */}
           <meta property="og:locale" content="pt_BR" />
           <meta httpEquiv="content-language" content="pt-BR" />
-          <link rel="alternate" href="https://receitas-git-main-purfazzs-projects.vercel.app" hrefLang="pt-BR" />
-          <link rel="alternate" href="https://receitas-git-main-purfazzs-projects.vercel.app" hrefLang="x-default" />
+          <link rel="alternate" href={baseUrl} hrefLang="pt-BR" />
+          <link rel="alternate" href={baseUrl} hrefLang="x-default" />
           
           {/* Favicons */}
           <link rel="icon" href="/favicon.ico" />
