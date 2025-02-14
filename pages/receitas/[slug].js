@@ -15,12 +15,12 @@ export default function ReceitaPage({ receita, receitasRelacionadas }) {
         <title>{`${receita.nome} - Receita do Dia`}</title>
         <meta name="description" content={`Aprenda a fazer ${receita.nome} de forma fácil e deliciosa. Receita completa com ingredientes e modo de preparo.`} />
         <meta name="keywords" content={`receita ${receita.nome.toLowerCase()}, como fazer ${receita.nome.toLowerCase()}, receita fácil, culinária`} />
-        <link rel="canonical" href={`https://receitas-do-dia.vercel.app/receitas/${receita.slug}`} />
+        <link rel="canonical" href={`https://receitas-random.vercel.app/receitas/${receita.slug}`} />
         
         <meta property="og:title" content={`${receita.nome} - Receita do Dia`} />
         <meta property="og:description" content={`Aprenda a fazer ${receita.nome} de forma fácil e deliciosa. Receita completa com ingredientes e modo de preparo.`} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://receitas-do-dia.vercel.app/receitas/${receita.slug}`} />
+        <meta property="og:url" content={`https://receitas-random.vercel.app/receitas/${receita.slug}`} />
         
         <script type="application/ld+json">
           {JSON.stringify({

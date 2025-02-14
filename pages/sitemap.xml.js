@@ -3,7 +3,7 @@ import { getReceitasSlugs } from '../utils/receitas'
 const Sitemap = () => null
 
 export async function getServerSideProps({ res }) {
-  const baseUrl = 'https://receitas-do-dia.vercel.app' // Atualize quando tiver seu domínio personalizado
+  const baseUrl = 'https://receitas-random.vercel.app' // URL atualizada
   
   // Gera as URLs para todas as receitas
   const receitas = getReceitasSlugs()
