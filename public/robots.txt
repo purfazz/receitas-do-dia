@@ -10,4 +10,4 @@ Disallow: /api/*
 Disallow: /admin/*
 
 # Sitemap location
-Sitemap: https://receitas-random.vercel.app/sitemap.xml.xml 
+Sitemap: https://receitas-git-main-purfazzs-projects.vercel.app/sitemap.xml.xml 

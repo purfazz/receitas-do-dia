@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Allow: /receitas/*
+Disallow: /api/*
+Disallow: /admin/*
+
+# Sitemap
+Sitemap: https://receitas-git-main-purfazzs-projects.vercel.app/sitemap.xml 
