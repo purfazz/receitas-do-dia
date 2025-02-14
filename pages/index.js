@@ -23,19 +23,20 @@ export default function Home({ receitas }) {
       <Head>
         <title>Receita do Dia - Descubra Receitas Deliciosas e Fáceis de Fazer</title>
         <meta name="description" content="Encontre receitas deliciosas e fáceis de fazer todos os dias. Receitas caseiras, práticas e testadas para seu almoço, jantar ou sobremesa. Instruções passo a passo!" />
-        <meta name="keywords" content="receita do dia, receitas fáceis, receitas caseiras, receitas práticas, receitas rápidas, culinária, como fazer, receitas portuguesas, receitas simples" />
+        <meta name="keywords" content="receita do dia, receitas fáceis, receitas caseiras, receitas práticas, receitas rápidas, culinária, como fazer, receitas portuguesas, receitas simples, receitas saudáveis, receitas veganas, receitas doces" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Receita do Dia - Descubra Receitas Deliciosas e Fáceis de Fazer" />
         <meta property="og:description" content="Encontre receitas deliciosas e fáceis de fazer todos os dias. Receitas caseiras, práticas e testadas para seu almoço, jantar ou sobremesa." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://receitas-git-main-purfazzs-projects.vercel.app" />
-        <meta property="og:site_name" content="Receita do Dia" />
+        <meta property="og:image" content="https://receitas-git-main-purfazzs-projects.vercel.app/og-image.jpg" />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Receita do Dia - Descubra Receitas Deliciosas" />
         <meta name="twitter:description" content="Encontre receitas deliciosas e fáceis de fazer todos os dias. Receitas caseiras e práticas!" />
+        <meta name="twitter:image" content="https://receitas-git-main-purfazzs-projects.vercel.app/og-image.jpg" />
         
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
@@ -58,34 +59,50 @@ export default function Home({ receitas }) {
                 "@type": "SearchAction",
                 "target": "https://receitas-git-main-purfazzs-projects.vercel.app/search?q={search_term_string}",
                 "query-input": "required name=search_term_string"
-              }
-            }
-          `}
-        </script>
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "ItemList",
-              "itemListElement": [
-                ${receitas.map((receita, index) => `{
-                  "@type": "ListItem",
-                  "position": ${index + 1},
-                  "item": {
-                    "@type": "Recipe",
-                    "name": "${receita.nome}",
-                    "description": "Aprenda a fazer ${receita.nome} de forma fácil e deliciosa",
-                    "cookTime": "${receita.tempoPreparo}",
-                    "recipeYield": "${receita.porcoes}",
-                    "recipeIngredient": ${JSON.stringify(receita.ingredientes)},
-                    "recipeInstructions": "${receita.modoPreparo.replace(/\n/g, ' ')}",
-                    "author": {
-                      "@type": "Organization",
-                      "name": "Receita do Dia"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "Receita do Dia",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://receitas-git-main-purfazzs-projects.vercel.app/logo.png"
+                }
+              },
+              "mainEntity": {
+                "@type": "ItemList",
+                "itemListElement": [
+                  ${receitas.map((receita, index) => `{
+                    "@type": "ListItem",
+                    "position": ${index + 1},
+                    "item": {
+                      "@type": "Recipe",
+                      "name": "${receita.nome}",
+                      "description": "Aprenda a fazer ${receita.nome} de forma fácil e deliciosa",
+                      "cookTime": "PT${receita.tempoPreparo.split(' ')[0]}M",
+                      "recipeYield": "${receita.porcoes}",
+                      "recipeCategory": "Prato Principal",
+                      "recipeCuisine": "Portuguesa",
+                      "recipeIngredient": ${JSON.stringify(receita.ingredientes)},
+                      "recipeInstructions": ${JSON.stringify(
+                        receita.modoPreparo.split('\n').map(step => ({
+                          "@type": "HowToStep",
+                          "text": step.replace(/^\d+\.\s*/, '')
+                        }))
+                      )},
+                      "author": {
+                        "@type": "Organization",
+                        "name": "Receita do Dia"
+                      },
+                      "datePublished": "${new Date().toISOString().split('T')[0]}",
+                      "image": "${receita.imagem}",
+                      "nutrition": {
+                        "@type": "NutritionInformation",
+                        "servingSize": "1 porção"
+                      }
                     }
-                  }
-                }`).join(',')}
-              ]
+                  }`).join(',')}
+                ]
+              }
             }
           `}
         </script>
