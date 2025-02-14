@@ -29,14 +29,14 @@ export default function Home({ receitas }) {
         <meta property="og:title" content="Receita do Dia - Descubra Receitas Deliciosas e Fáceis de Fazer" />
         <meta property="og:description" content="Encontre receitas deliciosas e fáceis de fazer todos os dias. Receitas caseiras, práticas e testadas para seu almoço, jantar ou sobremesa." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://receitas-git-main-purfazzs-projects.vercel.app" />
-        <meta property="og:image" content="https://receitas-git-main-purfazzs-projects.vercel.app/og-image.jpg" />
+        <meta property="og:url" content="https://receitadodia.vercel.app" />
+        <meta property="og:image" content="https://receitadodia.vercel.app/og-image.jpg" />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Receita do Dia - Descubra Receitas Deliciosas" />
         <meta name="twitter:description" content="Encontre receitas deliciosas e fáceis de fazer todos os dias. Receitas caseiras e práticas!" />
-        <meta name="twitter:image" content="https://receitas-git-main-purfazzs-projects.vercel.app/og-image.jpg" />
+        <meta name="twitter:image" content="https://receitadodia.vercel.app/og-image.jpg" />
         
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
@@ -44,7 +44,7 @@ export default function Home({ receitas }) {
         <link rel="manifest" href="/site.webmanifest" />
 
         {/* Canonical URL */}
-        <link rel="canonical" href="https://receitas-git-main-purfazzs-projects.vercel.app" />
+        <link rel="canonical" href="https://receitadodia.vercel.app" />
         
         {/* Schema.org para Rich Snippets */}
         <script type="application/ld+json">

@@ -32,6 +32,7 @@ export default function Document() {
           async 
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5527070421339032"
           crossOrigin="anonymous"
+          data-site-url="https://receitadodia.vercel.app"
         />
 
         {/* Preconnect para recursos externos */}
