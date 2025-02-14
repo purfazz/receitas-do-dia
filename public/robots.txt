@@ -10,4 +10,4 @@ Disallow: /api/*
 Disallow: /admin/*
 
 # Sitemap location
-Sitemap: https://receitas-do-dia.vercel.app/sitemap.xml 
+Sitemap: https://receitas-do-dia.vercel.app/sitemap.xml.xml 
