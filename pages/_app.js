@@ -2,6 +2,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { Analytics } from '@vercel/analytics/react'
 import Navbar from '../components/Navbar'
 import Head from 'next/head'
+import CookieConsent from '../components/CookieConsent'
 
 export default function App({ Component, pageProps }) {
   return (
@@ -11,6 +12,7 @@ export default function App({ Component, pageProps }) {
       </Head>
       <Navbar />
       <Component {...pageProps} />
+      <CookieConsent />
       <Analytics />
     </ChakraProvider>
   )

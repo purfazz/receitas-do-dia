@@ -26,31 +26,34 @@ export default function Document() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@receitadodia" />
         
-        {/* Google AdSense - Código exato fornecido pelo Google */}
-        <script 
-          async 
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5527070421339032"
-          crossOrigin="anonymous"
-        />
-
         {/* Preconnect para recursos externos */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
       </Head>
       
-      {/* Google Analytics - Colocado imediatamente após o Head */}
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-DFLX0F5RND"></script>
+      {/* Google Analytics com consentimento padrão negado */}
       <script
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-DFLX0F5RND');
+            gtag('consent', 'default', {
+              'analytics_storage': 'denied',
+              'ad_storage': 'denied'
+            });
+            gtag('config', 'G-DFLX0F5RND', {
+              'anonymize_ip': true
+            });
           `
         }}
       />
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-DFLX0F5RND"></script>
+
+      {/* Google AdSense com consentimento */}
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5527070421339032" crossOrigin="anonymous" />
+      
       <body>
         <Main />
         <NextScript />
