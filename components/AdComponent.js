@@ -6,13 +6,13 @@ export default function AdComponent() {
     <Box my={4}>
       <Script
         async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=seu-id-do-adsense"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5527070421339032"
         crossOrigin="anonymous"
       />
       <ins
         className="adsbygoogle"
         style={{ display: 'block' }}
-        data-ad-client="seu-id-do-adsense"
+        data-ad-client="ca-pub-5527070421339032"
         data-ad-slot="seu-slot-id"
         data-ad-format="auto"
         data-full-width-responsive="true"
