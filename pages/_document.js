@@ -12,9 +12,12 @@ class MyDocument extends Document {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "url": "${baseUrl}",
-      "name": "Receita do Dia",
-      "description": "Descubra receitas deliciosas e fáceis de fazer todos os dias",
+      "name": "Receita do Dia - Gerador de Receitas Online",
+      "description": "🎲 Gerador de Receitas Online Grátis! Clique e descubra uma receita deliciosa para fazer hoje. Mais de 20 receitas caseiras com passo a passo.",
       "inLanguage": "pt-BR",
+      "keywords": "gerador de receitas, receitas aleatórias, receitas online, receitas grátis, receitas caseiras, receitas fáceis",
+      "genre": "Culinária e Gastronomia",
+      "isFamilyFriendly": "True",
       "potentialAction": [{
         "@type": "SearchAction",
         "target": "${baseUrl}/search?q={search_term_string}",
@@ -28,6 +31,18 @@ class MyDocument extends Document {
           "url": "${baseUrl}/logo.png",
           "width": "180",
           "height": "180"
+        }
+      },
+      "mainEntity": {
+        "@type": "WebPage",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Receitas",
+            "item": "${baseUrl}"
+          }]
         }
       }
     }`
@@ -56,14 +71,28 @@ class MyDocument extends Document {
           <meta name="author" content="Receita do Dia" />
           <meta name="copyright" content="© 2024 Receita do Dia" />
           <meta name="format-detection" content="telephone=no" />
+          <meta name="description" content="🎲 Gerador de Receitas Online Grátis! Clique e descubra uma receita deliciosa para fazer hoje. 🥘 Mais de 20 receitas caseiras com passo a passo. Lasanha, Strogonoff, Bolos e muito mais!" />
           
           {/* Open Graph padrão */}
           <meta property="og:site_name" content="Receita do Dia" />
           <meta property="og:type" content="website" />
+          <meta property="og:description" content="🎲 Gerador de Receitas Online Grátis! Clique e descubra uma receita deliciosa para fazer hoje. 🥘 Mais de 20 receitas caseiras com passo a passo. Lasanha, Strogonoff, Bolos e muito mais!" />
           
           {/* Twitter Cards padrão */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@receitadodia" />
+          
+          {/* Meta tags para definição clara do escopo do site */}
+          <meta name="category" content="Culinária, Receitas, Gastronomia" />
+          <meta name="rating" content="general" />
+          <meta name="subject" content="Receitas culinárias e gastronomia" />
+          <meta name="classification" content="Culinária" />
+          <meta name="reply-to" content="contato@receitadodia.com.br" />
+          
+          {/* Meta tags de segurança e controle */}
+          <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+          <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+          <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
           
           {/* Preconnect para recursos externos */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
