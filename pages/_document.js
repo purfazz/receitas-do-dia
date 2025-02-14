@@ -1,6 +1,30 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
+  const schemaOrgWebsite = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://receitas-git-main-purfazzs-projects.vercel.app",
+    "name": "Receita do Dia",
+    "description": "Descubra receitas deliciosas e fáceis de fazer todos os dias",
+    "inLanguage": "pt-BR",
+    "potentialAction": [{
+      "@type": "SearchAction",
+      "target": "https://receitas-git-main-purfazzs-projects.vercel.app/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Receita do Dia",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://receitas-git-main-purfazzs-projects.vercel.app/logo.png",
+        "width": "180",
+        "height": "180"
+      }
+    }
+  }
+
   return (
     <Html lang="pt">
       <Head>
@@ -47,29 +71,7 @@ export default function Document() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "url": "https://receitas-git-main-purfazzs-projects.vercel.app",
-              "name": "Receita do Dia",
-              "description": "Descubra receitas deliciosas e fáceis de fazer todos os dias",
-              "potentialAction": {
-                "@type": "SearchAction",
-                "target": {
-                  "@type": "EntryPoint",
-                  "urlTemplate": "https://receitas-git-main-purfazzs-projects.vercel.app/search?q={search_term_string}"
-                },
-                "query-input": "required name=search_term_string"
-              },
-              "publisher": {
-                "@type": "Organization",
-                "name": "Receita do Dia",
-                "logo": {
-                  "@type": "ImageObject",
-                  "url": "https://receitas-git-main-purfazzs-projects.vercel.app/logo.png"
-                }
-              }
-            })
+            __html: JSON.stringify(schemaOrgWebsite)
           }}
         />
       </Head>
