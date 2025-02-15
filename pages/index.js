@@ -3,6 +3,7 @@ import { Box, Button, Container, Heading, Text, VStack, useColorModeValue } from
 import { useState } from 'react'
 import AdComponent from '../components/AdComponent'
 import CTASection from '../components/CTASection'
+import ShareButtons from '../components/ShareButtons'
 
 export default function Home({ receitas }) {
   const [receitaDoDia, setReceitaDoDia] = useState(null)
@@ -245,6 +246,13 @@ export default function Home({ receitas }) {
                   <Text fontSize="lg">
                     ⭐ <strong>Dificuldade:</strong> {receitaDoDia.dificuldade}
                   </Text>
+                  <Box mt={4}>
+                    <Text fontSize="sm" mb={2}>Compartilhe esta receita:</Text>
+                    <ShareButtons 
+                      title={receitaDoDia.nome}
+                      url={`https://receitadodia.vercel.app`}
+                    />
+                  </Box>
                 </Box>
 
                 <Box mb={6}>
