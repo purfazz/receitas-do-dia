@@ -23,9 +23,9 @@ export default function ReceitaPage({ receita, receitasRelacionadas }) {
       "name": "Receita do Dia"
     },
     "datePublished": new Date().toISOString().split('T')[0],
-    "prepTime": `PT${receita.tempoPreparo.split(' ')[0]}M`,
-    "cookTime": `PT${receita.tempoPreparo.split(' ')[0]}M`,
-    "totalTime": `PT${receita.tempoPreparo.split(' ')[0]}M`,
+    "prepTime": receita.prepTime,
+    "cookTime": receita.cookTime,
+    "totalTime": receita.totalTime,
     "recipeYield": receita.porcoes,
     "recipeCategory": "Prato Principal",
     "recipeCuisine": "Portuguesa",
@@ -37,7 +37,14 @@ export default function ReceitaPage({ receita, receitasRelacionadas }) {
     })),
     "nutrition": {
       "@type": "NutritionInformation",
-      "servingSize": "1 porção"
+      "servingSize": "1 porção",
+      "calories": receita.informacoesNutricionais?.calorias,
+      "fatContent": receita.informacoesNutricionais?.gorduras,
+      "saturatedFatContent": receita.informacoesNutricionais?.gordurasSaturadas,
+      "carbohydrateContent": receita.informacoesNutricionais?.carboidratos,
+      "proteinContent": receita.informacoesNutricionais?.proteinas,
+      "fiberContent": receita.informacoesNutricionais?.fibras,
+      "sodiumContent": receita.informacoesNutricionais?.sodio
     },
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -49,6 +56,29 @@ export default function ReceitaPage({ receita, receitasRelacionadas }) {
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": `${baseUrl}/receitas/${receita.slug}`
+    },
+    "suitableForDiet": receita.categoria === "vegano" 
+      ? "VeganDiet" 
+      : receita.categoria === "vegetariano" 
+        ? "VegetarianDiet" 
+        : null,
+    "additionalProperty": [
+      {
+        "@type": "PropertyValue",
+        "name": "Dicas de Preparo",
+        "value": receita.dicas?.join(". ")
+      }
+    ],
+    "mainEntity": {
+      "@type": "FAQPage",
+      "mainEntity": receita.faq?.map(item => ({
+        "@type": "Question",
+        "name": item.pergunta,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.resposta
+        }
+      }))
     }
   }
 
@@ -86,9 +116,9 @@ export default function ReceitaPage({ receita, receitasRelacionadas }) {
                 "name": "Receita do Dia"
               },
               "datePublished": new Date().toISOString().split('T')[0],
-              "prepTime": `PT${receita.tempoPreparo.split(' ')[0]}M`,
-              "cookTime": `PT${receita.tempoPreparo.split(' ')[0]}M`,
-              "totalTime": `PT${receita.tempoPreparo.split(' ')[0]}M`,
+              "prepTime": receita.prepTime,
+              "cookTime": receita.cookTime,
+              "totalTime": receita.totalTime,
               "recipeYield": receita.porcoes,
               "recipeCategory": "Prato Principal",
               "recipeCuisine": "Portuguesa",
@@ -100,7 +130,14 @@ export default function ReceitaPage({ receita, receitasRelacionadas }) {
               })),
               "nutrition": {
                 "@type": "NutritionInformation",
-                "servingSize": "1 porção"
+                "servingSize": "1 porção",
+                "calories": receita.informacoesNutricionais?.calorias,
+                "fatContent": receita.informacoesNutricionais?.gorduras,
+                "saturatedFatContent": receita.informacoesNutricionais?.gordurasSaturadas,
+                "carbohydrateContent": receita.informacoesNutricionais?.carboidratos,
+                "proteinContent": receita.informacoesNutricionais?.proteinas,
+                "fiberContent": receita.informacoesNutricionais?.fibras,
+                "sodiumContent": receita.informacoesNutricionais?.sodio
               },
               "aggregateRating": {
                 "@type": "AggregateRating",
@@ -112,6 +149,29 @@ export default function ReceitaPage({ receita, receitasRelacionadas }) {
               "mainEntityOfPage": {
                 "@type": "WebPage",
                 "@id": `${baseUrl}/receitas/${receita.slug}`
+              },
+              "suitableForDiet": receita.categoria === "vegano" 
+                ? "VeganDiet" 
+                : receita.categoria === "vegetariano" 
+                  ? "VegetarianDiet" 
+                  : null,
+              "additionalProperty": [
+                {
+                  "@type": "PropertyValue",
+                  "name": "Dicas de Preparo",
+                  "value": receita.dicas?.join(". ")
+                }
+              ],
+              "mainEntity": {
+                "@type": "FAQPage",
+                "mainEntity": receita.faq?.map(item => ({
+                  "@type": "Question",
+                  "name": item.pergunta,
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": item.resposta
+                  }
+                }))
               }
             }, null, 2)
           }}
@@ -227,6 +287,72 @@ export default function ReceitaPage({ receita, receitasRelacionadas }) {
                   {receita.modoPreparo}
                 </Text>
               </Box>
+
+              <Box mb={6}>
+                <Heading as="h2" size="md" mb={4} color="teal.400">
+                  📊 Informações Nutricionais:
+                </Heading>
+                <Box pl={4}>
+                  {receita.informacoesNutricionais && (
+                    <SimpleGrid columns={[2, 3, 4]} spacing={4}>
+                      <Box>
+                        <Text fontWeight="bold">Calorias:</Text>
+                        <Text>{receita.informacoesNutricionais.calorias}</Text>
+                      </Box>
+                      <Box>
+                        <Text fontWeight="bold">Proteínas:</Text>
+                        <Text>{receita.informacoesNutricionais.proteinas}</Text>
+                      </Box>
+                      <Box>
+                        <Text fontWeight="bold">Carboidratos:</Text>
+                        <Text>{receita.informacoesNutricionais.carboidratos}</Text>
+                      </Box>
+                      <Box>
+                        <Text fontWeight="bold">Gorduras:</Text>
+                        <Text>{receita.informacoesNutricionais.gorduras}</Text>
+                      </Box>
+                    </SimpleGrid>
+                  )}
+                </Box>
+              </Box>
+
+              {receita.dicas && (
+                <Box mb={6}>
+                  <Heading as="h2" size="md" mb={4} color="teal.400">
+                    💡 Dicas de Preparo:
+                  </Heading>
+                  <Box pl={4}>
+                    {receita.dicas.map((dica, index) => (
+                      <Text 
+                        key={index} 
+                        fontSize="lg" 
+                        mb={2}
+                        display="flex"
+                        alignItems="center"
+                      >
+                        <Box as="span" mr={2}>•</Box>
+                        {dica}
+                      </Text>
+                    ))}
+                  </Box>
+                </Box>
+              )}
+
+              {receita.faq && (
+                <Box mb={6}>
+                  <Heading as="h2" size="md" mb={4} color="teal.400">
+                    ❓ Perguntas Frequentes:
+                  </Heading>
+                  <Box pl={4}>
+                    {receita.faq.map((item, index) => (
+                      <Box key={index} mb={4}>
+                        <Text fontWeight="bold" fontSize="lg">{item.pergunta}</Text>
+                        <Text fontSize="lg" mt={2}>{item.resposta}</Text>
+                      </Box>
+                    ))}
+                  </Box>
+                </Box>
+              )}
 
               {receitasRelacionadas.length > 0 && (
                 <Box mt={8}>

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Box, Button, Container, Heading, Text, VStack, useColorModeValue } from '@chakra-ui/react'
+import { Box, Button, Container, Heading, Text, VStack, useColorModeValue, HStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import AdComponent from '../components/AdComponent'
 import CTASection from '../components/CTASection'
@@ -7,14 +7,26 @@ import ShareButtons from '../components/ShareButtons'
 
 export default function Home({ receitas }) {
   const [receitaDoDia, setReceitaDoDia] = useState(null)
+  const [filtroCategoria, setFiltroCategoria] = useState('todas')
   const bgColor = useColorModeValue('gray.50', 'gray.900')
   const cardBg = useColorModeValue('white', 'gray.800')
 
+  const categorias = [
+    { id: 'todas', nome: 'Todas', icon: '🍽️' },
+    { id: 'onivoro', nome: 'Onívoro', icon: '🥩' },
+    { id: 'vegetariano', nome: 'Vegetariano', icon: '🥗' },
+    { id: 'vegano', nome: 'Vegano', icon: '🌱' }
+  ]
+
   const escolherReceita = () => {
+    const receitasFiltradas = receitas.filter(receita => 
+      filtroCategoria === 'todas' || receita.categoria === filtroCategoria
+    )
+    
     let novaReceita;
     do {
-      novaReceita = receitas[Math.floor(Math.random() * receitas.length)]
-    } while (receitaDoDia && novaReceita.nome === receitaDoDia.nome && receitas.length > 1)
+      novaReceita = receitasFiltradas[Math.floor(Math.random() * receitasFiltradas.length)]
+    } while (receitaDoDia && novaReceita?.nome === receitaDoDia.nome && receitasFiltradas.length > 1)
     
     setReceitaDoDia(novaReceita)
   }
@@ -163,6 +175,19 @@ export default function Home({ receitas }) {
               </Text>
             </Box>
 
+            <HStack spacing={4} wrap="wrap" justify="center">
+              {categorias.map((cat) => (
+                <Button
+                  key={cat.id}
+                  colorScheme={filtroCategoria === cat.id ? 'teal' : 'gray'}
+                  onClick={() => setFiltroCategoria(cat.id)}
+                  leftIcon={<Text>{cat.icon}</Text>}
+                >
+                  {cat.nome}
+                </Button>
+              ))}
+            </HStack>
+
             <Button 
               colorScheme="teal"
               size="lg"
@@ -303,9 +328,13 @@ export async function getStaticProps() {
     {
       nome: "Frango Grelhado com Legumes",
       tempoPreparo: "30 minutos",
+      prepTime: "PT10M",
+      cookTime: "PT20M",
+      totalTime: "PT30M",
       porcoes: "4 porções",
       dificuldade: "Fácil",
-      imagem: "https://loremflickr.com/800/600/chicken,vegetables",
+      categoria: "onivoro",
+      imagem: "https://source.unsplash.com/featured/?grilled,chicken",
       ingredientes: [
         "4 filés de frango",
         "2 cenouras médias cortadas em rodelas",
@@ -316,13 +345,41 @@ export async function getStaticProps() {
         "Sal e pimenta a gosto",
         "Temperos frescos (tomilho, alecrim) a gosto"
       ],
-      modoPreparo: "1. Tempere os filés de frango com sal, pimenta e alho\n2. Aqueça uma frigideira grande com 1 colher de azeite\n3. Grelhe o frango por 5-7 minutos de cada lado\n4. Reserve o frango\n5. Na mesma frigideira, adicione o restante do azeite\n6. Refogue a cebola até ficar transparente\n7. Adicione as cenouras e cozinhe por 5 minutos\n8. Acrescente a abobrinha e cozinhe por mais 3 minutos\n9. Tempere os legumes com sal e pimenta\n10. Sirva o frango com os legumes e decore com os temperos frescos"
+      modoPreparo: "1. Tempere os filés de frango com sal, pimenta e alho\n2. Aqueça uma frigideira grande com 1 colher de azeite\n3. Grelhe o frango por 5-7 minutos de cada lado\n4. Reserve o frango\n5. Na mesma frigideira, adicione o restante do azeite\n6. Refogue a cebola até ficar transparente\n7. Adicione as cenouras e cozinhe por 5 minutos\n8. Acrescente a abobrinha e cozinhe por mais 3 minutos\n9. Tempere os legumes com sal e pimenta\n10. Sirva o frango com os legumes e decore com os temperos frescos",
+      informacoesNutricionais: {
+        calorias: "320",
+        gorduras: "12g",
+        gordurasSaturadas: "2.5g",
+        carboidratos: "8g",
+        proteinas: "45g",
+        fibras: "3g",
+        sodio: "380mg"
+      },
+      dicas: [
+        "Para um frango mais suculento, deixe marinar por 30 minutos antes de grelhar",
+        "Você pode substituir os legumes por outros de sua preferência",
+        "Para uma versão mais leve, use peito de frango sem pele"
+      ],
+      faq: [
+        {
+          pergunta: "Posso preparar o frango no forno?",
+          resposta: "Sim! Asse a 200°C por cerca de 25-30 minutos, virando na metade do tempo."
+        },
+        {
+          pergunta: "Como saber se o frango está no ponto?",
+          resposta: "O frango está pronto quando estiver dourado por fora e, ao cortar, a carne estiver completamente branca, sem partes rosadas."
+        }
+      ]
     },
     {
       nome: "Risoto de Cogumelos",
       tempoPreparo: "45 minutos",
+      prepTime: "PT15M",
+      cookTime: "PT30M",
+      totalTime: "PT45M",
       porcoes: "6 porções",
       dificuldade: "Médio",
+      categoria: "vegetariano",
       imagem: "https://loremflickr.com/800/600/risotto,mushrooms",
       ingredientes: [
         "2 xícaras de arroz arbóreo",
