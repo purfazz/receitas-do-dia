@@ -398,9 +398,13 @@ export async function getStaticProps() {
     {
       nome: "Bolo de Chocolate Vegano",
       tempoPreparo: "50 minutos",
+      prepTime: "PT15M",
+      cookTime: "PT35M",
+      totalTime: "PT50M",
       porcoes: "8 porções",
       dificuldade: "Fácil",
-      imagem: "https://loremflickr.com/800/600/chocolate,cake",
+      categoria: "vegano",
+      imagem: "https://source.unsplash.com/featured/?vegan,chocolate,cake",
       ingredientes: [
         "2 xícaras de farinha de trigo",
         "1 xícara de cacau em pó",
@@ -413,13 +417,104 @@ export async function getStaticProps() {
         "2 colheres de chá de extrato de baunilha",
         "1 colher de sopa de vinagre de maçã"
       ],
-      modoPreparo: "1. Pré-aqueça o forno a 180°C\n2. Unte uma forma redonda com óleo e cacau\n3. Em uma tigela, misture todos os ingredientes secos\n4. Em outra tigela, misture todos os ingredientes líquidos\n5. Combine as misturas até formar uma massa homogênea\n6. Despeje na forma preparada\n7. Asse por 35-40 minutos ou até um palito sair limpo\n8. Deixe esfriar antes de desenformar\n9. Decore com ganache vegano se desejar"
+      modoPreparo: "1. Pré-aqueça o forno a 180°C\n2. Unte uma forma redonda com óleo e cacau\n3. Em uma tigela, misture todos os ingredientes secos\n4. Em outra tigela, misture todos os ingredientes líquidos\n5. Combine as misturas até formar uma massa homogênea\n6. Despeje na forma preparada\n7. Asse por 35-40 minutos ou até um palito sair limpo\n8. Deixe esfriar antes de desenformar\n9. Decore com ganache vegano se desejar",
+      informacoesNutricionais: {
+        calorias: "280",
+        gorduras: "12g",
+        gordurasSaturadas: "1.5g",
+        carboidratos: "42g",
+        proteinas: "4g",
+        fibras: "3g",
+        sodio: "250mg"
+      },
+      dicas: [
+        "Para um bolo mais úmido, adicione 1/2 xícara de purê de maçã",
+        "O vinagre de maçã reage com o bicarbonato, deixando o bolo mais fofo",
+        "Você pode substituir o leite vegetal por água, mas o sabor ficará menos rico"
+      ],
+      faq: [
+        {
+          pergunta: "Posso usar outro tipo de farinha?",
+          resposta: "Sim, você pode usar farinha integral ou de aveia, mas a textura pode ficar diferente."
+        },
+        {
+          pergunta: "Como fazer o ganache vegano?",
+          resposta: "Misture chocolate meio amargo vegano derretido com leite de coco cremoso na proporção 1:1."
+        }
+      ]
+    },
+    {
+      nome: "Curry de Grão de Bico",
+      tempoPreparo: "40 minutos",
+      prepTime: "PT10M",
+      cookTime: "PT30M",
+      totalTime: "PT40M",
+      porcoes: "4 porções",
+      dificuldade: "Fácil",
+      categoria: "vegano",
+      imagem: "https://source.unsplash.com/featured/?curry,chickpea",
+      ingredientes: [
+        "2 latas de grão de bico",
+        "1 lata de leite de coco",
+        "2 cebolas picadas",
+        "4 dentes de alho",
+        "2 colheres de curry em pó",
+        "1 colher de gengibre ralado",
+        "1 lata de tomate pelado",
+        "Coentro fresco",
+        "Sal e pimenta a gosto"
+      ],
+      modoPreparo: "1. Refogue a cebola e o alho\n2. Adicione o curry e o gengibre\n3. Acrescente o tomate e o grão de bico\n4. Adicione o leite de coco\n5. Cozinhe por 20 minutos\n6. Finalize com coentro",
+      informacoesNutricionais: {
+        calorias: "320",
+        gorduras: "14g",
+        gordurasSaturadas: "8g",
+        carboidratos: "42g",
+        proteinas: "12g",
+        fibras: "8g",
+        sodio: "380mg"
+      }
+    },
+    {
+      nome: "Salada de Quinoa com Legumes",
+      tempoPreparo: "25 minutos",
+      prepTime: "PT10M",
+      cookTime: "PT15M",
+      totalTime: "PT25M",
+      porcoes: "4 porções",
+      dificuldade: "Fácil",
+      categoria: "vegano",
+      imagem: "https://source.unsplash.com/featured/?quinoa,salad",
+      ingredientes: [
+        "1 xícara de quinoa",
+        "2 cenouras raladas",
+        "1 pepino em cubos",
+        "1 pimentão vermelho picado",
+        "Folhas de hortelã",
+        "Suco de 1 limão",
+        "Azeite de oliva",
+        "Sal e pimenta a gosto"
+      ],
+      modoPreparo: "1. Cozinhe a quinoa conforme instruções da embalagem\n2. Misture com os legumes\n3. Tempere com limão, azeite, sal e pimenta\n4. Finalize com hortelã",
+      informacoesNutricionais: {
+        calorias: "220",
+        gorduras: "8g",
+        gordurasSaturadas: "1g",
+        carboidratos: "32g",
+        proteinas: "8g",
+        fibras: "5g",
+        sodio: "180mg"
+      }
     },
     {
       nome: "Salmão ao Molho de Limão",
       tempoPreparo: "25 minutos",
+      prepTime: "PT10M",
+      cookTime: "PT15M",
+      totalTime: "PT25M",
       porcoes: "2 porções",
       dificuldade: "Médio",
+      categoria: "onivoro",
       imagem: "https://loremflickr.com/800/600/salmon,fish",
       ingredientes: [
         "2 filés de salmão",
@@ -510,8 +605,12 @@ export async function getStaticProps() {
     {
       nome: "Strogonoff de Frango",
       tempoPreparo: "40 minutos",
+      prepTime: "PT15M",
+      cookTime: "PT25M",
+      totalTime: "PT40M",
       porcoes: "6 porções",
       dificuldade: "Médio",
+      categoria: "onivoro",
       imagem: "https://loremflickr.com/800/600/chicken,strogonoff",
       ingredientes: [
         "800g de frango em cubos",
@@ -571,8 +670,12 @@ export async function getStaticProps() {
     {
       nome: "Feijoada Completa",
       tempoPreparo: "180 minutos",
+      prepTime: "PT30M",
+      cookTime: "PT150M",
+      totalTime: "PT180M",
       porcoes: "10 porções",
       dificuldade: "Difícil",
+      categoria: "onivoro",
       imagem: "https://loremflickr.com/800/600/feijoada,beans",
       ingredientes: [
         "1kg de feijão preto",
@@ -602,8 +705,12 @@ export async function getStaticProps() {
     {
       nome: "Ceviche de Peixe",
       tempoPreparo: "30 minutos",
+      prepTime: "PT20M",
+      cookTime: "PT10M",
+      totalTime: "PT30M",
       porcoes: "4 porções",
       dificuldade: "Médio",
+      categoria: "onivoro",
       imagem: "https://loremflickr.com/800/600/ceviche,fish",
       ingredientes: [
         "500g de peixe branco",
@@ -647,8 +754,12 @@ export async function getStaticProps() {
     {
       nome: "Bacalhau à Brás",
       tempoPreparo: "45 minutos",
+      prepTime: "PT15M",
+      cookTime: "PT30M",
+      totalTime: "PT45M",
       porcoes: "4 porções",
       dificuldade: "Médio",
+      categoria: "onivoro",
       imagem: "https://source.unsplash.com/featured/?cod,fish",
       ingredientes: [
         "400g de bacalhau desfiado",
@@ -714,6 +825,260 @@ export async function getStaticProps() {
         "2 colheres de farinha"
       ],
       modoPreparo: "1. Prepare o creme com leite e gemas\n2. Forre forminhas com massa folhada\n3. Preencha com o creme\n4. Asse em forno muito quente\n5. Polvilhe com canela"
+    },
+    {
+      nome: "Arroz com Lentilha e Legumes",
+      tempoPreparo: "35 minutos",
+      prepTime: "PT10M",
+      cookTime: "PT25M",
+      totalTime: "PT35M",
+      porcoes: "4 porções",
+      dificuldade: "Fácil",
+      categoria: "vegano",
+      imagem: "https://source.unsplash.com/featured/?lentils,rice",
+      ingredientes: [
+        "1 xícara de lentilha",
+        "2 xícaras de arroz",
+        "1 cebola picada",
+        "2 cenouras em cubos",
+        "1 abobrinha em cubos",
+        "3 dentes de alho",
+        "Azeite",
+        "Sal e pimenta a gosto",
+        "Cheiro verde"
+      ],
+      modoPreparo: "1. Cozinhe a lentilha em água por 15 minutos\n2. Em outra panela, refogue alho e cebola\n3. Adicione o arroz e refogue\n4. Acrescente água quente e cozinhe\n5. Refogue os legumes separadamente\n6. Misture tudo e finalize com cheiro verde",
+      informacoesNutricionais: {
+        calorias: "280",
+        gorduras: "4g",
+        gordurasSaturadas: "0.5g",
+        carboidratos: "52g",
+        proteinas: "10g",
+        fibras: "7g",
+        sodio: "180mg"
+      }
+    },
+    {
+      nome: "Sopa de Legumes com Macarrão",
+      tempoPreparo: "30 minutos",
+      prepTime: "PT10M",
+      cookTime: "PT20M",
+      totalTime: "PT30M",
+      porcoes: "4 porções",
+      dificuldade: "Fácil",
+      categoria: "vegano",
+      imagem: "https://source.unsplash.com/featured/?vegetable,soup",
+      ingredientes: [
+        "1 pacote de macarrão tipo padre nosso",
+        "2 batatas em cubos",
+        "2 cenouras em rodelas",
+        "1 cebola picada",
+        "2 tomates picados",
+        "Couve em tiras",
+        "2 dentes de alho",
+        "Sal e temperos a gosto"
+      ],
+      modoPreparo: "1. Refogue alho e cebola\n2. Adicione os legumes e água\n3. Cozinhe até os legumes ficarem macios\n4. Acrescente o macarrão\n5. Finalize com a couve",
+      informacoesNutricionais: {
+        calorias: "220",
+        gorduras: "2g",
+        gordurasSaturadas: "0.3g",
+        carboidratos: "45g",
+        proteinas: "7g",
+        fibras: "4g",
+        sodio: "150mg"
+      }
+    },
+    {
+      nome: "Farofa de Proteína de Soja",
+      tempoPreparo: "20 minutos",
+      prepTime: "PT5M",
+      cookTime: "PT15M",
+      totalTime: "PT20M",
+      porcoes: "4 porções",
+      dificuldade: "Fácil",
+      categoria: "vegano",
+      imagem: "https://source.unsplash.com/featured/?farofa",
+      ingredientes: [
+        "2 xícaras de farinha de mandioca",
+        "1 xícara de proteína de soja",
+        "1 cebola picada",
+        "3 dentes de alho",
+        "Azeite ou óleo",
+        "Sal e pimenta a gosto",
+        "Cheiro verde"
+      ],
+      modoPreparo: "1. Hidrate a proteína de soja em água quente\n2. Refogue alho e cebola\n3. Adicione a proteína de soja e tempere\n4. Acrescente a farinha aos poucos\n5. Finalize com cheiro verde",
+      informacoesNutricionais: {
+        calorias: "180",
+        gorduras: "6g",
+        gordurasSaturadas: "0.8g",
+        carboidratos: "24g",
+        proteinas: "8g",
+        fibras: "3g",
+        sodio: "120mg"
+      }
+    },
+    {
+      nome: "Strogonoff de Grão de Bico",
+      tempoPreparo: "40 minutos",
+      prepTime: "PT10M",
+      cookTime: "PT30M",
+      totalTime: "PT40M",
+      porcoes: "4 porções",
+      dificuldade: "Médio",
+      categoria: "vegetariano",
+      imagem: "https://source.unsplash.com/featured/?chickpea,stew",
+      ingredientes: [
+        "2 latas de grão de bico",
+        "1 cebola grande picada",
+        "3 dentes de alho",
+        "1 caixa de creme de leite",
+        "3 colheres de molho de tomate",
+        "1 colher de mostarda",
+        "Champignons (opcional)",
+        "Sal e pimenta a gosto",
+        "Batata palha para servir"
+      ],
+      modoPreparo: "1. Escorra e lave o grão de bico\n2. Refogue cebola e alho\n3. Adicione o grão de bico e tempere\n4. Acrescente molho de tomate e mostarda\n5. Finalize com creme de leite\n6. Sirva com batata palha",
+      informacoesNutricionais: {
+        calorias: "310",
+        gorduras: "12g",
+        gordurasSaturadas: "5g",
+        carboidratos: "42g",
+        proteinas: "12g",
+        fibras: "8g",
+        sodio: "280mg"
+      }
+    },
+    {
+      nome: "Escondidinho de Mandioca com Lentilha",
+      tempoPreparo: "50 minutos",
+      prepTime: "PT20M",
+      cookTime: "PT30M",
+      totalTime: "PT50M",
+      porcoes: "6 porções",
+      dificuldade: "Médio",
+      categoria: "vegano",
+      imagem: "https://source.unsplash.com/featured/?cassava,lentils",
+      ingredientes: [
+        "1kg de mandioca cozida",
+        "2 xícaras de lentilha",
+        "1 cebola grande",
+        "4 dentes de alho",
+        "2 tomates picados",
+        "Azeite",
+        "Sal e pimenta a gosto",
+        "Cheiro verde",
+        "Leite vegetal para o purê"
+      ],
+      modoPreparo: "1. Cozinhe a lentilha até ficar macia\n2. Faça um purê com a mandioca\n3. Refogue cebola, alho e tomates\n4. Misture com a lentilha e tempere\n5. Monte camadas de purê e lentilha\n6. Asse por 20 minutos",
+      informacoesNutricionais: {
+        calorias: "290",
+        gorduras: "5g",
+        gordurasSaturadas: "0.6g",
+        carboidratos: "52g",
+        proteinas: "11g",
+        fibras: "6g",
+        sodio: "200mg"
+      }
+    },
+    {
+      nome: "Bife à Parmegiana",
+      tempoPreparo: "45 minutos",
+      prepTime: "PT15M",
+      cookTime: "PT30M",
+      totalTime: "PT45M",
+      porcoes: "4 porções",
+      dificuldade: "Médio",
+      categoria: "onivoro",
+      imagem: "https://source.unsplash.com/featured/?steak,parmesan",
+      ingredientes: [
+        "4 bifes de contra filé",
+        "2 ovos batidos",
+        "Farinha de trigo para empanar",
+        "Farinha de rosca",
+        "Molho de tomate",
+        "200g de queijo mussarela",
+        "Queijo parmesão ralado",
+        "Sal e pimenta a gosto",
+        "Óleo para fritar"
+      ],
+      modoPreparo: "1. Tempere os bifes com sal e pimenta\n2. Passe na farinha de trigo, ovo e farinha de rosca\n3. Frite em óleo quente até dourar\n4. Cubra com molho de tomate e queijos\n5. Leve ao forno para gratinar",
+      informacoesNutricionais: {
+        calorias: "450",
+        gorduras: "22g",
+        gordurasSaturadas: "8g",
+        carboidratos: "28g",
+        proteinas: "42g",
+        fibras: "2g",
+        sodio: "680mg"
+      }
+    },
+    {
+      nome: "Almôndegas ao Sugo",
+      tempoPreparo: "40 minutos",
+      prepTime: "PT15M",
+      cookTime: "PT25M",
+      totalTime: "PT40M",
+      porcoes: "6 porções",
+      dificuldade: "Fácil",
+      categoria: "onivoro",
+      imagem: "https://source.unsplash.com/featured/?meatballs",
+      ingredientes: [
+        "500g de carne moída",
+        "1 ovo",
+        "2 fatias de pão de forma",
+        "Leite para umedecer o pão",
+        "1 cebola ralada",
+        "2 dentes de alho",
+        "Salsa picada",
+        "500ml de molho de tomate",
+        "Sal e pimenta a gosto"
+      ],
+      modoPreparo: "1. Misture a carne com ovo, pão umedecido, cebola e temperos\n2. Faça bolinhas pequenas\n3. Doure as almôndegas\n4. Adicione o molho de tomate\n5. Cozinhe por 15 minutos",
+      informacoesNutricionais: {
+        calorias: "320",
+        gorduras: "18g",
+        gordurasSaturadas: "6g",
+        carboidratos: "15g",
+        proteinas: "28g",
+        fibras: "2g",
+        sodio: "520mg"
+      }
+    },
+    {
+      nome: "Frango Xadrez",
+      tempoPreparo: "35 minutos",
+      prepTime: "PT15M",
+      cookTime: "PT20M",
+      totalTime: "PT35M",
+      porcoes: "4 porções",
+      dificuldade: "Médio",
+      categoria: "onivoro",
+      imagem: "https://source.unsplash.com/featured/?chicken,stir-fry",
+      ingredientes: [
+        "500g de peito de frango em cubos",
+        "1 pimentão vermelho",
+        "1 pimentão verde",
+        "1 cebola grande",
+        "2 cenouras",
+        "100g de amendoim torrado",
+        "Molho shoyu",
+        "Óleo de gergelim",
+        "Gengibre ralado",
+        "3 dentes de alho"
+      ],
+      modoPreparo: "1. Marine o frango com shoyu e gengibre\n2. Corte os legumes em cubos\n3. Refogue o frango\n4. Adicione os legumes\n5. Finalize com amendoim e óleo de gergelim",
+      informacoesNutricionais: {
+        calorias: "380",
+        gorduras: "16g",
+        gordurasSaturadas: "3g",
+        carboidratos: "12g",
+        proteinas: "35g",
+        fibras: "4g",
+        sodio: "450mg"
+      }
     }
   ]
 
