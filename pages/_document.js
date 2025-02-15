@@ -123,7 +123,55 @@ class MyDocument extends Document {
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
-              __html: jsonLd
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "url": baseUrl,
+                "name": "Receita do Dia - receitas passo a passo e dicas culinárias",
+                "description": "Aqui você encontra receitas passo a passo, dicas culinárias e tudo sobre gastronomia. Receitas práticas para o dia a dia, ideais para refeições fáceis e deliciosas.",
+                "inLanguage": "pt-BR",
+                "keywords": "receitas passo a passo, dicas culinárias, gastronomia, receitas práticas, massas, saladas, lanches simples, refeições fáceis",
+                "genre": "Culinária e Gastronomia",
+                "isFamilyFriendly": "True",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "0",
+                  "priceCurrency": "BRL",
+                  "availability": "https://schema.org/InStock"
+                },
+                "potentialAction": [{
+                  "@type": "SearchAction",
+                  "target": `${baseUrl}/search?q={search_term_string}`,
+                  "query-input": "required name=search_term_string"
+                }],
+                "publisher": {
+                  "@type": "Organization",
+                  "name": "Receita do Dia",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": `${baseUrl}/logo.png`,
+                    "width": "180",
+                    "height": "180"
+                  }
+                },
+                "mainEntity": {
+                  "@type": "WebPage",
+                  "breadcrumb": {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [{
+                      "@type": "ListItem",
+                      "position": 1,
+                      "name": "Receitas",
+                      "item": baseUrl
+                    }]
+                  },
+                  "about": {
+                    "@type": "Thing",
+                    "name": "Receitas e Dicas Culinárias",
+                    "description": "Receitas passo a passo e dicas essenciais para um dia a dia saudável e cheio de sabor. Aprenda a preparar pratos deliciosos de forma simples e prática."
+                  }
+                }
+              }, null, 2)
             }}
           />
 

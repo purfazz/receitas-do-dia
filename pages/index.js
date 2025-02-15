@@ -51,7 +51,7 @@ export default function Home({ receitas }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: `{
+            __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "Receita do Dia",
@@ -72,7 +72,7 @@ export default function Home({ receitas }) {
               },
               "mainEntity": {
                 "@type": "ItemList",
-                "itemListElement": ${JSON.stringify(receitas.map((receita, index) => ({
+                "itemListElement": receitas.map((receita, index) => ({
                   "@type": "ListItem",
                   "position": index + 1,
                   "item": {
@@ -99,9 +99,9 @@ export default function Home({ receitas }) {
                       "servingSize": "1 porção"
                     }
                   }
-                })))}
+                }))
               }
-            }`
+            }, null, 2)
           }}
         />
       </Head>
