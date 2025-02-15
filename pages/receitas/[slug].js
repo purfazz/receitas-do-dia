@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { Box, Container, Heading, Text, VStack, SimpleGrid, Link, useColorModeValue } from '@chakra-ui/react'
 import { slugify, getReceitasSlugs } from '../../utils/receitas'
+import ShareButtons from '../../components/ShareButtons'
 
 export default function ReceitaPage({ receita, receitasRelacionadas }) {
   const cardBg = useColorModeValue('white', 'gray.800')
@@ -185,6 +186,13 @@ export default function ReceitaPage({ receita, receitasRelacionadas }) {
                 <Text fontSize="lg">
                   ⭐ <strong>Dificuldade:</strong> {receita.dificuldade}
                 </Text>
+                <Box mt={4}>
+                  <Text fontSize="sm" mb={2}>Compartilhe esta receita:</Text>
+                  <ShareButtons 
+                    title={receita.nome} 
+                    url={`${baseUrl}/receitas/${receita.slug}`} 
+                  />
+                </Box>
               </Box>
 
               <Box mb={6}>

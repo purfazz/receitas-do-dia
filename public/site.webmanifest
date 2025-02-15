@@ -1,21 +1,43 @@
 {
-  "name": "Receita do Dia",
-  "short_name": "Receitas",
-  "description": "Descubra receitas deliciosas todos os dias",
+  "name": "Receita do Dia - Receitas Fáceis e Deliciosas",
+  "short_name": "Receita do Dia",
+  "description": "Descubra receitas deliciosas todos os dias, com passo a passo detalhado e dicas culinárias",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#319795",
+  "orientation": "portrait",
+  "scope": "/",
+  "prefer_related_applications": false,
+  "categories": ["food", "lifestyle", "cooking"],
+  "shortcuts": [
+    {
+      "name": "Descobrir Receita",
+      "short_name": "Descobrir",
+      "description": "Encontre uma nova receita aleatória",
+      "url": "/?source=pwa",
+      "icons": [{ "src": "/android-chrome-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Sobre",
+      "short_name": "Sobre",
+      "description": "Saiba mais sobre o Receita do Dia",
+      "url": "/sobre?source=pwa",
+      "icons": [{ "src": "/android-chrome-192x192.png", "sizes": "192x192" }]
+    }
+  ],
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 } 
