@@ -1079,6 +1079,411 @@ export async function getStaticProps() {
         fibras: "4g",
         sodio: "450mg"
       }
+    },
+    {
+      nome: "Caril de Legumes com Leite de Coco",
+      tempoPreparo: "40 minutos",
+      prepTime: "PT15M",
+      cookTime: "PT25M",
+      totalTime: "PT40M",
+      porcoes: "4 porções",
+      dificuldade: "Fácil",
+      categoria: "vegano",
+      imagem: "https://source.unsplash.com/featured/?curry,vegetables",
+      ingredientes: [
+        "2 batatas-doces médias em cubos",
+        "1 couve-flor pequena em floretes",
+        "2 cenouras em rodelas",
+        "1 lata de grão cozido",
+        "1 lata de leite de coco",
+        "1 cebola picada",
+        "4 dentes de alho",
+        "2 colheres de caril em pó",
+        "1 colher de gengibre ralado",
+        "Coentros frescos",
+        "Sal e pimenta q.b."
+      ],
+      modoPreparo: "1. Refogue a cebola e o alho em azeite\n2. Adicione o caril e o gengibre\n3. Junte os legumes e refogue por 5 minutos\n4. Adicione o leite de coco e um pouco de água\n5. Cozinhe até os legumes estarem macios\n6. Junte o grão e aqueça\n7. Finalize com coentros frescos",
+      informacoesNutricionais: {
+        calorias: "290",
+        gorduras: "14g",
+        gordurasSaturadas: "9g",
+        carboidratos: "38g",
+        proteinas: "8g",
+        fibras: "7g",
+        sodio: "320mg"
+      },
+      dicas: [
+        "Use leite de coco gordo para um molho mais cremoso",
+        "Pode substituir o grão por lentilhas",
+        "Sirva com arroz basmati para uma refeição completa"
+      ]
+    },
+    {
+      nome: "Bolonhesa de Lentilhas",
+      tempoPreparo: "45 minutos",
+      prepTime: "PT15M",
+      cookTime: "PT30M",
+      totalTime: "PT45M",
+      porcoes: "6 porções",
+      dificuldade: "Fácil",
+      categoria: "vegano",
+      imagem: "https://source.unsplash.com/featured/?lentils,pasta",
+      ingredientes: [
+        "2 chávenas de lentilhas",
+        "1 cenoura ralada",
+        "2 talos de aipo picados",
+        "1 cebola grande picada",
+        "4 dentes de alho",
+        "2 latas de tomate pelado",
+        "1 colher de orégãos secos",
+        "1 folha de louro",
+        "Vinho tinto (opcional)",
+        "Azeite",
+        "Sal e pimenta q.b."
+      ],
+      modoPreparo: "1. Cozinhe as lentilhas até ficarem al dente\n2. Refogue cebola, alho, cenoura e aipo\n3. Adicione o tomate e temperos\n4. Junte as lentilhas e cozinhe por 20 minutos\n5. Sirva com massa à escolha",
+      informacoesNutricionais: {
+        calorias: "260",
+        gorduras: "4g",
+        gordurasSaturadas: "0.5g",
+        carboidratos: "42g",
+        proteinas: "15g",
+        fibras: "18g",
+        sodio: "280mg"
+      },
+      dicas: [
+        "Triture parte das lentilhas para um molho mais espesso",
+        "Adicione cogumelos salteados para mais sabor",
+        "Pode congelar porções individuais"
+      ]
+    },
+    {
+      nome: "Hambúrguer de Feijão Preto",
+      tempoPreparo: "40 minutos",
+      prepTime: "PT20M",
+      cookTime: "PT20M",
+      totalTime: "PT40M",
+      porcoes: "6 porções",
+      dificuldade: "Médio",
+      categoria: "vegano",
+      imagem: "https://source.unsplash.com/featured/?burger,beans",
+      ingredientes: [
+        "2 latas de feijão preto escorrido",
+        "1 beterraba ralada",
+        "1 cenoura ralada",
+        "1 cebola picada",
+        "3 dentes de alho",
+        "1 chávena de aveia em flocos",
+        "Salsa picada",
+        "1 colher de cominho",
+        "Sal e pimenta q.b.",
+        "Azeite para grelhar"
+      ],
+      modoPreparo: "1. Escorra bem o feijão e esmague\n2. Misture com os legumes ralados\n3. Adicione a aveia e temperos\n4. Forme hambúrgueres\n5. Grelhe em azeite até dourar\n6. Sirva em pão com acompanhamentos",
+      informacoesNutricionais: {
+        calorias: "180",
+        gorduras: "3g",
+        gordurasSaturadas: "0.4g",
+        carboidratos: "30g",
+        proteinas: "9g",
+        fibras: "8g",
+        sodio: "240mg"
+      },
+      dicas: [
+        "Deixe a massa descansar 30 minutos antes de formar os hambúrgueres",
+        "Pode congelar antes de grelhar",
+        "Sirva com guacamole para mais nutrientes"
+      ]
+    },
+    {
+      nome: "Bacalhau à Gomes de Sá",
+      tempoPreparo: "60 minutos",
+      prepTime: "PT20M",
+      cookTime: "PT40M",
+      totalTime: "PT60M",
+      porcoes: "6 porções",
+      dificuldade: "Médio",
+      categoria: "onivoro",
+      imagem: "https://source.unsplash.com/featured/?codfish",
+      ingredientes: [
+        "800g de bacalhau demolhado",
+        "1kg de batatas",
+        "4 ovos cozidos",
+        "3 cebolas grandes",
+        "4 dentes de alho",
+        "Azeitonas pretas q.b.",
+        "Salsa picada q.b.",
+        "Azeite q.b.",
+        "Sal e pimenta q.b."
+      ],
+      modoPreparo: "1. Coza o bacalhau e desfie\n2. Coza as batatas em rodelas\n3. Refogue cebola e alho em azeite\n4. Monte em camadas: batatas, bacalhau, cebola\n5. Regue com azeite\n6. Leve ao forno por 20 minutos\n7. Decore com ovos e azeitonas",
+      informacoesNutricionais: {
+        calorias: "420",
+        gorduras: "18g",
+        gordurasSaturadas: "3g",
+        carboidratos: "35g",
+        proteinas: "38g",
+        fibras: "4g",
+        sodio: "580mg"
+      }
+    },
+    {
+      nome: "Ratatouille",
+      tempoPreparo: "50 minutos",
+      prepTime: "PT20M",
+      cookTime: "PT30M",
+      totalTime: "PT50M",
+      porcoes: "4 porções",
+      dificuldade: "Médio",
+      categoria: "vegano",
+      imagem: "https://source.unsplash.com/featured/?ratatouille",
+      ingredientes: [
+        "2 berinjelas",
+        "3 abobrinhas",
+        "2 pimentões coloridos",
+        "4 tomates maduros",
+        "1 cebola grande",
+        "4 dentes de alho",
+        "Ervas de Provence",
+        "Azeite q.b.",
+        "Sal e pimenta q.b."
+      ],
+      modoPreparo: "1. Corte os legumes em rodelas finas\n2. Prepare o molho de tomate com cebola e alho\n3. Disponha os legumes em camadas circulares\n4. Tempere com ervas e azeite\n5. Asse por 30 minutos coberto\n6. Finalize sem tampa por 10 minutos",
+      informacoesNutricionais: {
+        calorias: "180",
+        gorduras: "8g",
+        gordurasSaturadas: "1g",
+        carboidratos: "24g",
+        proteinas: "5g",
+        fibras: "8g",
+        sodio: "220mg"
+      }
+    },
+    {
+      nome: "Paella Vegetariana",
+      tempoPreparo: "45 minutos",
+      prepTime: "PT15M",
+      cookTime: "PT30M",
+      totalTime: "PT45M",
+      porcoes: "6 porções",
+      dificuldade: "Médio",
+      categoria: "vegetariano",
+      imagem: "https://source.unsplash.com/featured/?paella",
+      ingredientes: [
+        "2 xícaras de arroz bomba",
+        "4 xícaras de caldo de legumes",
+        "1 pimentão vermelho",
+        "1 pimentão verde",
+        "1 abobrinha",
+        "200g de ervilhas",
+        "Açafrão",
+        "2 dentes de alho",
+        "1 cebola",
+        "Azeite q.b.",
+        "Sal e pimenta q.b."
+      ],
+      modoPreparo: "1. Refogue cebola e alho\n2. Adicione os pimentões e abobrinha\n3. Junte o arroz e açafrão\n4. Adicione o caldo quente\n5. Cozinhe sem mexer\n6. Adicione as ervilhas no final",
+      informacoesNutricionais: {
+        calorias: "310",
+        gorduras: "6g",
+        gordurasSaturadas: "1g",
+        carboidratos: "56g",
+        proteinas: "8g",
+        fibras: "6g",
+        sodio: "280mg"
+      }
+    },
+    {
+      nome: "Arroz Doce",
+      tempoPreparo: "40 minutos",
+      prepTime: "PT10M",
+      cookTime: "PT30M",
+      totalTime: "PT40M",
+      porcoes: "6 porções",
+      dificuldade: "Fácil",
+      categoria: "vegetariano",
+      imagem: "https://source.unsplash.com/featured/?rice,pudding",
+      ingredientes: [
+        "2 chávenas de arroz",
+        "1 litro de leite",
+        "2 paus de canela",
+        "Casca de 1 limão",
+        "200g de açúcar",
+        "3 gemas",
+        "Canela em pó q.b."
+      ],
+      modoPreparo: "1. Coza o arroz com água, canela e limão\n2. Adicione o leite e deixe absorver\n3. Junte o açúcar\n4. Retire do lume e adicione as gemas\n5. Polvilhe com canela",
+      informacoesNutricionais: {
+        calorias: "280",
+        gorduras: "5g",
+        gordurasSaturadas: "2g",
+        carboidratos: "52g",
+        proteinas: "7g",
+        fibras: "1g",
+        sodio: "85mg"
+      }
+    },
+    {
+      nome: "Sopa de Abóbora",
+      tempoPreparo: "35 minutos",
+      prepTime: "PT10M",
+      cookTime: "PT25M",
+      totalTime: "PT35M",
+      porcoes: "4 porções",
+      dificuldade: "Fácil",
+      categoria: "vegano",
+      imagem: "https://source.unsplash.com/featured/?pumpkin,soup",
+      ingredientes: [
+        "1 abóbora média",
+        "2 cenouras",
+        "1 cebola",
+        "2 dentes de alho",
+        "Gengibre fresco q.b.",
+        "Leite de coco (opcional)",
+        "Azeite",
+        "Sal e pimenta q.b."
+      ],
+      modoPreparo: "1. Corte os legumes em cubos\n2. Refogue cebola e alho\n3. Adicione abóbora e cenoura\n4. Cubra com água e cozinhe\n5. Triture tudo\n6. Finalize com leite de coco",
+      informacoesNutricionais: {
+        calorias: "160",
+        gorduras: "7g",
+        gordurasSaturadas: "3g",
+        carboidratos: "22g",
+        proteinas: "3g",
+        fibras: "4g",
+        sodio: "180mg"
+      }
+    },
+    {
+      nome: "Francesinha Vegetariana",
+      tempoPreparo: "45 minutos",
+      prepTime: "PT15M",
+      cookTime: "PT30M",
+      totalTime: "PT45M",
+      porcoes: "2 porções",
+      dificuldade: "Médio",
+      categoria: "vegetariano",
+      imagem: "https://source.unsplash.com/featured/?sandwich",
+      ingredientes: [
+        "4 fatias de pão de forma",
+        "2 hambúrgueres vegetais",
+        "4 fatias de queijo",
+        "Molho de tomate picante",
+        "200ml de cerveja",
+        "1 cebola",
+        "2 dentes de alho",
+        "Mostarda",
+        "Batatas fritas para acompanhar"
+      ],
+      modoPreparo: "1. Prepare o molho com cerveja e tomate\n2. Grelhe os hambúrgueres\n3. Monte o sanduíche em camadas\n4. Cubra com queijo\n5. Regue com o molho quente",
+      informacoesNutricionais: {
+        calorias: "580",
+        gorduras: "28g",
+        gordurasSaturadas: "12g",
+        carboidratos: "62g",
+        proteinas: "22g",
+        fibras: "4g",
+        sodio: "980mg"
+      }
+    },
+    {
+      nome: "Moqueca de Banana da Terra",
+      tempoPreparo: "40 minutos",
+      prepTime: "PT15M",
+      cookTime: "PT25M",
+      totalTime: "PT40M",
+      porcoes: "4 porções",
+      dificuldade: "Fácil",
+      categoria: "vegano",
+      imagem: "https://source.unsplash.com/featured/?plantain,stew",
+      ingredientes: [
+        "4 bananas da terra maduras",
+        "2 tomates maduros",
+        "1 pimentão vermelho",
+        "1 cebola grande",
+        "400ml de leite de coco",
+        "2 dentes de alho",
+        "Coentro fresco",
+        "Azeite de dendê",
+        "Sal e pimenta q.b."
+      ],
+      modoPreparo: "1. Corte as bananas em rodelas grossas\n2. Refogue cebola e alho\n3. Adicione tomate e pimentão\n4. Junte o leite de coco\n5. Acrescente as bananas\n6. Cozinhe por 15 minutos\n7. Finalize com dendê e coentro",
+      informacoesNutricionais: {
+        calorias: "280",
+        gorduras: "14g",
+        gordurasSaturadas: "8g",
+        carboidratos: "38g",
+        proteinas: "4g",
+        fibras: "5g",
+        sodio: "180mg"
+      }
+    },
+    {
+      nome: "Feijoada Vegana",
+      tempoPreparo: "90 minutos",
+      prepTime: "PT30M",
+      cookTime: "PT60M",
+      totalTime: "PT90M",
+      porcoes: "6 porções",
+      dificuldade: "Médio",
+      categoria: "vegano",
+      imagem: "https://source.unsplash.com/featured/?beans,stew",
+      ingredientes: [
+        "500g de feijão preto",
+        "200g de proteína de soja texturizada",
+        "2 cenouras em cubos",
+        "2 batatas em cubos",
+        "1 cebola grande",
+        "4 dentes de alho",
+        "2 folhas de louro",
+        "Azeite",
+        "Sal e pimenta q.b.",
+        "Couve para acompanhar",
+        "Farofa vegana",
+        "Laranja"
+      ],
+      modoPreparo: "1. Deixe o feijão de molho\n2. Hidrate a proteína de soja\n3. Refogue cebola e alho\n4. Cozinhe o feijão com louro\n5. Adicione os legumes\n6. Junte a proteína de soja\n7. Cozinhe até todos os ingredientes estarem macios",
+      informacoesNutricionais: {
+        calorias: "320",
+        gorduras: "6g",
+        gordurasSaturadas: "0.8g",
+        carboidratos: "48g",
+        proteinas: "22g",
+        fibras: "12g",
+        sodio: "280mg"
+      }
+    },
+    {
+      nome: "Torta de Maçã Vegana",
+      tempoPreparo: "60 minutos",
+      prepTime: "PT20M",
+      cookTime: "PT40M",
+      totalTime: "PT60M",
+      porcoes: "8 porções",
+      dificuldade: "Médio",
+      categoria: "vegano",
+      imagem: "https://source.unsplash.com/featured/?apple,pie",
+      ingredientes: [
+        "3 maçãs grandes",
+        "200g de farinha integral",
+        "100g de açúcar mascavo",
+        "100ml de óleo de coco",
+        "60ml de água gelada",
+        "1 colher de canela",
+        "Suco de 1/2 limão",
+        "Pitada de sal"
+      ],
+      modoPreparo: "1. Prepare a massa com farinha, óleo e água\n2. Corte as maçãs em fatias finas\n3. Tempere com limão, açúcar e canela\n4. Forre uma forma com a massa\n5. Disponha as maçãs\n6. Asse por 40 minutos",
+      informacoesNutricionais: {
+        calorias: "260",
+        gorduras: "12g",
+        gordurasSaturadas: "8g",
+        carboidratos: "36g",
+        proteinas: "3g",
+        fibras: "4g",
+        sodio: "120mg"
+      }
     }
   ]
 
