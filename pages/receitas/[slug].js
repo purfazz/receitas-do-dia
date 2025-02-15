@@ -5,7 +5,7 @@ import ShareButtons from '../../components/ShareButtons'
 
 export default function ReceitaPage({ receita, receitasRelacionadas }) {
   const cardBg = useColorModeValue('white', 'gray.800')
-  const baseUrl = 'https://receitas-git-main-purfazzs-projects.vercel.app'
+  const baseUrl = 'https://receitadodia.vercel.app'
 
   if (!receita) {
     return <Box>Receita não encontrada</Box>

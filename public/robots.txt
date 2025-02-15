@@ -12,10 +12,10 @@ Disallow: /static/*
 Crawl-delay: 10
 
 # Host
-Host: https://receitas-git-main-purfazzs-projects.vercel.app
+Host: https://receitadodia.vercel.app
 
 # Sitemap
-Sitemap: https://receitas-git-main-purfazzs-projects.vercel.app/sitemap.xml
+Sitemap: https://receitadodia.vercel.app/sitemap.xml
 
 # Bots específicos
 User-agent: Googlebot

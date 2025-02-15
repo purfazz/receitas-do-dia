@@ -55,10 +55,10 @@ export default function Home({ receitas }) {
               "@type": "WebSite",
               "name": "Receita do Dia",
               "description": "Descubra receitas deliciosas e práticas todos os dias",
-              "url": "https://receitas-git-main-purfazzs-projects.vercel.app",
+              "url": "https://receitadodia.vercel.app",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://receitas-git-main-purfazzs-projects.vercel.app/search?q={search_term_string}",
+                "target": "https://receitadodia.vercel.app/search?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               },
               "publisher": {

@@ -3,7 +3,7 @@ import { getReceitasSlugs } from '../utils/receitas'
 const Sitemap = () => null
 
 export async function getServerSideProps({ res }) {
-  const baseUrl = 'https://receitas-git-main-purfazzs-projects.vercel.app' // URL atualizada
+  const baseUrl = 'https://receitadodia.vercel.app'
   
   // Gera as URLs para todas as receitas
   const receitas = getReceitasSlugs()
