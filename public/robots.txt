@@ -3,6 +3,13 @@ User-agent: *
 Allow: /
 Allow: /receitas/*
 Allow: /sobre
+Allow: /ads.txt
+Allow: /pagead/
+Allow: /pagead/js/
+Allow: /pagead/show_ads.js
+Allow: /pagead/ads
+Allow: /doubleclick.net
+Allow: /googleads.g.doubleclick.net
 Disallow: /api/*
 Disallow: /admin/*
 Disallow: /_next/*
@@ -20,11 +27,35 @@ Sitemap: https://receitadodia.vercel.app/sitemap.xml
 # Bots específicos
 User-agent: Googlebot
 Allow: /
+Allow: /pagead/
+Allow: /pagead/js/
+Allow: /pagead/show_ads.js
+Allow: /pagead/ads
+Allow: /doubleclick.net
+Allow: /googleads.g.doubleclick.net
 Crawl-delay: 1
 
 User-agent: Googlebot-Image
 Allow: /
 Crawl-delay: 1
+
+User-agent: Mediapartners-Google
+Allow: /
+Allow: /pagead/
+Allow: /pagead/js/
+Allow: /pagead/show_ads.js
+Allow: /pagead/ads
+Allow: /doubleclick.net
+Allow: /googleads.g.doubleclick.net
+
+User-agent: Adsbot-Google
+Allow: /
+Allow: /pagead/
+Allow: /pagead/js/
+Allow: /pagead/show_ads.js
+Allow: /pagead/ads
+Allow: /doubleclick.net
+Allow: /googleads.g.doubleclick.net
 
 User-agent: Bingbot
 Allow: /
