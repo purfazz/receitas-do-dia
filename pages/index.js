@@ -66,7 +66,7 @@ export default function Home({ receitas }) {
                 "name": "Receita do Dia",
                 "logo": {
                   "@type": "ImageObject",
-                  "url": "https://receitas-git-main-purfazzs-projects.vercel.app/logo.png"
+                  "url": "https://receitadodia.vercel.app/logo.png"
                 }
               },
               "mainEntity": {
