@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { Box, Container, Heading, Text, VStack, SimpleGrid, Link, useColorModeValue } from '@chakra-ui/react'
 import { slugify, getReceitasSlugs } from '../../utils/receitas'
 import ShareButtons from '../../components/ShareButtons'
+import AdComponent from '../../components/AdComponent'
 
 export default function ReceitaPage({ receita, receitasRelacionadas }) {
   const cardBg = useColorModeValue('white', 'gray.800')
@@ -353,6 +354,8 @@ export default function ReceitaPage({ receita, receitasRelacionadas }) {
                   </Box>
                 </Box>
               )}
+
+              <AdComponent contentExists={true} />
 
               {receitasRelacionadas.length > 0 && (
                 <Box mt={8}>

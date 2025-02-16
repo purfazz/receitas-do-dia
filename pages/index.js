@@ -1,27 +1,26 @@
 import Head from 'next/head'
-import { Box, Button, Container, Heading, Text, VStack, useColorModeValue, HStack } from '@chakra-ui/react'
+import { Box, Button, Container, Heading, Text, VStack, useColorModeValue, SimpleGrid, List, ListItem, HStack, Link } from '@chakra-ui/react'
 import { useState } from 'react'
 import AdComponent from '../components/AdComponent'
 import CTASection from '../components/CTASection'
-import ShareButtons from '../components/ShareButtons'
+import IngredientTips from '../components/IngredientTips'
+import NewsletterForm from '../components/NewsletterForm'
+import LearningResources from '../components/LearningResources'
+import NextLink from 'next/link'
 
 export default function Home({ receitas }) {
   const [receitaDoDia, setReceitaDoDia] = useState(null)
-  const [filtroCategoria, setFiltroCategoria] = useState('todas')
+  const [selectedIngredient, setSelectedIngredient] = useState(null)
+  const [dietaSelecionada, setDietaSelecionada] = useState('todas')
   const bgColor = useColorModeValue('gray.50', 'gray.900')
   const cardBg = useColorModeValue('white', 'gray.800')
-
-  const categorias = [
-    { id: 'todas', nome: 'Todas', icon: '🍽️' },
-    { id: 'onivoro', nome: 'Onívoro', icon: '🥩' },
-    { id: 'vegetariano', nome: 'Vegetariano', icon: '🥗' },
-    { id: 'vegano', nome: 'Vegano', icon: '🌱' }
-  ]
+  const hoverBg = useColorModeValue('gray.50', 'gray.700')
 
   const escolherReceita = () => {
-    const receitasFiltradas = receitas.filter(receita => 
-      filtroCategoria === 'todas' || receita.categoria === filtroCategoria
-    )
+    let receitasFiltradas = receitas
+    if (dietaSelecionada !== 'todas') {
+      receitasFiltradas = receitas.filter(receita => receita.dieta === dietaSelecionada)
+    }
     
     let novaReceita;
     do {
@@ -31,47 +30,34 @@ export default function Home({ receitas }) {
     setReceitaDoDia(novaReceita)
   }
 
+  const handleDicasChef = (ingrediente) => {
+    setSelectedIngredient(ingrediente)
+  }
+
   return (
     <>
       <Head>
-        <title>Receita do Dia - Descubra Receitas Deliciosas e Fáceis de Fazer</title>
-        <meta name="description" content="Encontre receitas deliciosas e fáceis de fazer todos os dias. Receitas caseiras, práticas e testadas para seu almoço, jantar ou sobremesa. Instruções passo a passo!" />
-        <meta name="keywords" content="receita do dia, receitas fáceis, receitas caseiras, receitas práticas, receitas rápidas, culinária, como fazer, receitas portuguesas, receitas simples, receitas saudáveis, receitas veganas, receitas doces" />
-        
-        {/* Open Graph */}
-        <meta property="og:title" content="Receita do Dia - Descubra Receitas Deliciosas e Fáceis de Fazer" />
-        <meta property="og:description" content="Encontre receitas deliciosas e fáceis de fazer todos os dias. Receitas caseiras, práticas e testadas para seu almoço, jantar ou sobremesa." />
+        <title>Receita do Dia - Descubra Receitas Deliciosas e Saudáveis</title>
+        <meta name="description" content="Explore receitas deliciosas, saudáveis e fáceis de fazer. Receitas veganas, vegetarianas e tradicionais com dicas do chef, informações nutricionais e benefícios para a saúde." />
+        <meta name="keywords" content="receitas, culinária, receitas saudáveis, receitas veganas, receitas vegetarianas, dicas de culinária, gastronomia" />
+        <meta property="og:title" content="Receita do Dia - Descubra Receitas Deliciosas e Saudáveis" />
+        <meta property="og:description" content="Explore receitas deliciosas, saudáveis e fáceis de fazer. Receitas veganas, vegetarianas e tradicionais com dicas do chef." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://receitadodia.vercel.app" />
-        <meta property="og:image" content="https://receitadodia.vercel.app/og-image.jpg" />
-        
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Receita do Dia - Descubra Receitas Deliciosas" />
-        <meta name="twitter:description" content="Encontre receitas deliciosas e fáceis de fazer todos os dias. Receitas caseiras e práticas!" />
-        <meta name="twitter:image" content="https://receitadodia.vercel.app/og-image.jpg" />
-        
-        {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-
-        {/* Canonical URL */}
-        <link rel="canonical" href="https://receitadodia.vercel.app" />
-        
-        {/* Schema.org para Rich Snippets */}
+        <meta property="og:url" content="https://receitadodia.com" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://receitadodia.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: `{
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "Receita do Dia",
-              "description": "Descubra receitas deliciosas e práticas todos os dias",
-              "url": "https://receitadodia.vercel.app",
+              "description": "Site de receitas com foco em alimentação saudável e sustentável",
+              "url": "https://receitadodia.com",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://receitadodia.vercel.app/search?q={search_term_string}",
+                "target": "https://receitadodia.com/search?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               },
               "publisher": {
@@ -79,22 +65,22 @@ export default function Home({ receitas }) {
                 "name": "Receita do Dia",
                 "logo": {
                   "@type": "ImageObject",
-                  "url": "https://receitadodia.vercel.app/logo.png"
+                  "url": "https://receitadodia.com/logo.png"
                 }
               },
               "mainEntity": {
                 "@type": "ItemList",
-                "itemListElement": receitas.map((receita, index) => ({
+                "itemListElement": ${JSON.stringify(receitas.map((receita, index) => ({
                   "@type": "ListItem",
                   "position": index + 1,
                   "item": {
                     "@type": "Recipe",
                     "name": receita.nome,
-                    "description": `Aprenda a fazer ${receita.nome} de forma fácil e deliciosa`,
+                    "description": `Aprenda a fazer ${receita.nome} de forma saudável e deliciosa`,
                     "cookTime": `PT${receita.tempoPreparo.split(' ')[0]}M`,
                     "recipeYield": receita.porcoes,
-                    "recipeCategory": "Prato Principal",
-                    "recipeCuisine": "Portuguesa",
+                    "recipeCategory": receita.dieta === "vegano" ? "Vegano" : receita.dieta === "vegetariano" ? "Vegetariano" : "Tradicional",
+                    "recipeCuisine": "Brasileira",
                     "recipeIngredient": receita.ingredientes,
                     "recipeInstructions": receita.modoPreparo.split('\n').map(step => ({
                       "@type": "HowToStep",
@@ -106,87 +92,193 @@ export default function Home({ receitas }) {
                     },
                     "datePublished": new Date().toISOString().split('T')[0],
                     "image": receita.imagem,
-                    "nutrition": {
+                    "nutrition": receita.informacoesNutricionais ? {
                       "@type": "NutritionInformation",
-                      "servingSize": "1 porção"
-                    }
+                      "calories": receita.informacoesNutricionais.calorias,
+                      "proteinContent": receita.informacoesNutricionais.proteinas,
+                      "carbohydrateContent": receita.informacoesNutricionais.carboidratos,
+                      "fatContent": receita.informacoesNutricionais.gorduras,
+                      "fiberContent": receita.informacoesNutricionais.fibras,
+                      "sodiumContent": receita.informacoesNutricionais.sodio
+                    } : undefined
                   }
-                }))
+                })))}
               }
-            }, null, 2)
+            }`
           }}
         />
       </Head>
 
       <Box 
-        bgGradient="linear(to-br, orange.50, teal.50, orange.50)" 
         minH="100vh" 
         py={10}
+        bgGradient="linear(to-br, orange.50, teal.50, orange.50)"
         backgroundSize="400% 400%"
         animation="gradient 15s ease infinite"
         sx={{
           '@keyframes gradient': {
-            '0%': {
-              backgroundPosition: '0% 50%'
-            },
-            '50%': {
-              backgroundPosition: '100% 50%'
-            },
-            '100%': {
-              backgroundPosition: '0% 50%'
-            }
+            '0%': { backgroundPosition: '0% 50%' },
+            '50%': { backgroundPosition: '100% 50%' },
+            '100%': { backgroundPosition: '0% 50%' }
           }
         }}
       >
+        {/* Hero Section */}
+        <Box
+          position="relative"
+          height="400px"
+          mb={10}
+          overflow="hidden"
+        >
+          <Box
+            position="absolute"
+            top={0}
+            left={0}
+            right={0}
+            bottom={0}
+            backgroundImage="url('https://images.unsplash.com/photo-1556911220-e15b29be8c8f')"
+            backgroundPosition="center"
+            backgroundSize="cover"
+            filter="brightness(0.6)"
+          />
+          
+          <Container maxW="container.xl" height="100%" position="relative">
+            <VStack
+              height="100%"
+              justify="center"
+              align="flex-start"
+              spacing={4}
+              color="white"
+              px={4}
+            >
+              <Heading 
+                as="h1" 
+                size="2xl"
+                fontWeight="extrabold"
+                textShadow="2px 2px 4px rgba(0,0,0,0.5)"
+                maxW="800px"
+                lineHeight="1.2"
+              >
+                Descubra Receitas Deliciosas e Saudáveis Todo Dia
+              </Heading>
+              <Text 
+                fontSize="xl"
+                textShadow="1px 1px 2px rgba(0,0,0,0.5)"
+                maxW="600px"
+                lineHeight="1.6"
+              >
+                Explore nossa coleção de receitas cuidadosamente selecionadas, com ingredientes frescos e sabores incríveis.
+              </Text>
+            </VStack>
+          </Container>
+        </Box>
+
         <Container maxW="container.md">
           <VStack spacing={8} align="center">
             <Box textAlign="center">
-              <Heading 
-                as="h1" 
-                size="2xl" 
-                bgGradient="linear(to-r, orange.400, teal.500)"
-                bgClip="text"
-                mb={4}
-                letterSpacing="tight"
-                fontWeight="extrabold"
-                _hover={{
-                  bgGradient: "linear(to-r, teal.500, orange.400)",
-                  transition: "all 0.5s ease"
-                }}
-                css={{
-                  textShadow: "0 2px 10px rgba(0,0,0,0.1)",
-                  "@media (min-width: 48em)": {
-                    fontSize: "4.5rem"
-                  }
-                }}
-              >
-                Receita do Dia
-              </Heading>
               <Text 
                 fontSize="xl" 
                 color="gray.600"
                 fontWeight="medium"
-                textShadow="0 1px 2px rgba(0,0,0,0.1)"
+                mb={6}
               >
-                {!receitaDoDia 
-                  ? "Clique no botão abaixo para descobrir uma receita deliciosa!"
-                  : "Descubra uma nova receita deliciosa hoje!"
-                }
+                Escolha a sua preferência alimentar e descubra receitas incríveis
               </Text>
-            </Box>
 
-            <HStack spacing={4} wrap="wrap" justify="center">
-              {categorias.map((cat) => (
+              <HStack spacing={4} justify="center" mb={6} flexWrap="wrap" gap={2}>
                 <Button
-                  key={cat.id}
-                  colorScheme={filtroCategoria === cat.id ? 'teal' : 'gray'}
-                  onClick={() => setFiltroCategoria(cat.id)}
-                  leftIcon={<Text>{cat.icon}</Text>}
+                  colorScheme={dietaSelecionada === 'todas' ? 'teal' : 'gray'}
+                  onClick={() => setDietaSelecionada('todas')}
+                  size="lg"
+                  variant={dietaSelecionada === 'todas' ? 'solid' : 'outline'}
+                  _hover={{ transform: 'translateY(-2px)', boxShadow: 'md' }}
+                  transition="all 0.2s"
                 >
-                  {cat.nome}
+                  Todas as Receitas
                 </Button>
-              ))}
-            </HStack>
+                <Button
+                  colorScheme={dietaSelecionada === 'vegano' ? 'green' : 'gray'}
+                  onClick={() => setDietaSelecionada('vegano')}
+                  size="lg"
+                  variant={dietaSelecionada === 'vegano' ? 'solid' : 'outline'}
+                  _hover={{ transform: 'translateY(-2px)', boxShadow: 'md' }}
+                  transition="all 0.2s"
+                  position="relative"
+                  overflow="hidden"
+                  _before={{
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundImage: "url('https://images.unsplash.com/photo-1520869578617-557561d7b114')",
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    opacity: dietaSelecionada === 'vegano' ? '0.15' : '0.1',
+                    transition: 'opacity 0.2s'
+                  }}
+                >
+                  <Text position="relative" zIndex={1}>
+                    Vegano 🌱
+                  </Text>
+                </Button>
+                <Button
+                  colorScheme={dietaSelecionada === 'vegetariano' ? 'green' : 'gray'}
+                  onClick={() => setDietaSelecionada('vegetariano')}
+                  size="lg"
+                  variant={dietaSelecionada === 'vegetariano' ? 'solid' : 'outline'}
+                  _hover={{ transform: 'translateY(-2px)', boxShadow: 'md' }}
+                  transition="all 0.2s"
+                  position="relative"
+                  overflow="hidden"
+                  _before={{
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundImage: "url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe')",
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    opacity: dietaSelecionada === 'vegetariano' ? '0.3' : '0.2',
+                    transition: 'opacity 0.2s'
+                  }}
+                >
+                  <Text position="relative" zIndex={1}>
+                    Vegetariano 🥗
+                  </Text>
+                </Button>
+                <Button
+                  colorScheme={dietaSelecionada === 'onivoro' ? 'orange' : 'gray'}
+                  onClick={() => setDietaSelecionada('onivoro')}
+                  size="lg"
+                  variant={dietaSelecionada === 'onivoro' ? 'solid' : 'outline'}
+                  _hover={{ transform: 'translateY(-2px)', boxShadow: 'md' }}
+                  transition="all 0.2s"
+                  position="relative"
+                  overflow="hidden"
+                  _before={{
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundImage: "url('https://images.unsplash.com/photo-1615937657715-bc7b4b7962c1')",
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    opacity: dietaSelecionada === 'onivoro' ? '0.15' : '0.1',
+                    transition: 'opacity 0.2s'
+                  }}
+                >
+                  <Text position="relative" zIndex={1}>
+                    Omnívoro 🍖
+                  </Text>
+                </Button>
+              </HStack>
+            </Box>
 
             <Button 
               colorScheme="teal"
@@ -198,8 +290,6 @@ export default function Home({ receitas }) {
             >
               {!receitaDoDia ? "Descobrir Receita do Dia" : "Tentar Outra Receita"}
             </Button>
-
-            <AdComponent />
 
             {receitaDoDia && (
               <Box 
@@ -261,48 +351,55 @@ export default function Home({ receitas }) {
                   {receitaDoDia.nome}
                 </Heading>
 
-                <Box mb={6} p={4} bg={useColorModeValue('gray.50', 'gray.700')} borderRadius="md">
+                <Box mb={6} p={4} bg={hoverBg} borderRadius="md">
                   <Text fontSize="lg" mb={2}>
-                    ⏱️ <strong>Tempo de Preparo:</strong> {receitaDoDia.tempoPreparo}
+                    ⏱️ <strong>Tempo de Preparação:</strong> {receitaDoDia.tempoPreparo}
                   </Text>
                   <Text fontSize="lg">
-                    👥 <strong>Porções:</strong> {receitaDoDia.porcoes}
+                    �� <strong>Porções:</strong> {receitaDoDia.porcoes}
                   </Text>
                   <Text fontSize="lg">
                     ⭐ <strong>Dificuldade:</strong> {receitaDoDia.dificuldade}
                   </Text>
-                  <Box mt={4}>
-                    <Text fontSize="sm" mb={2}>Compartilhe esta receita:</Text>
-                    <ShareButtons 
-                      title={receitaDoDia.nome}
-                      url={`https://receitadodia.vercel.app`}
-                    />
-                  </Box>
                 </Box>
 
-                <Box mb={6}>
+                <Box>
                   <Heading as="h3" size="md" mb={4} color="teal.400">
                     🥘 Ingredientes:
                   </Heading>
                   <Box pl={4}>
                     {receitaDoDia.ingredientes.map((ingrediente, index) => (
-                      <Text 
+                      <Box 
                         key={index} 
-                        fontSize="lg" 
-                        mb={2}
                         display="flex"
                         alignItems="center"
+                        justifyContent="space-between"
+                        mb={2}
+                        p={2}
+                        borderRadius="md"
+                        _hover={{ bg: hoverBg }}
                       >
-                        <Box as="span" mr={2}>•</Box>
-                        {ingrediente}
-                      </Text>
+                        <Text fontSize="lg">
+                          <Box as="span" mr={2}>•</Box>
+                          {ingrediente}
+                        </Text>
+                        <Button
+                          size="sm"
+                          colorScheme="orange"
+                          variant="outline"
+                          leftIcon={<Box as="span">👩‍🍳</Box>}
+                          onClick={() => handleDicasChef(ingrediente)}
+                        >
+                          Dicas do Chefe
+                        </Button>
+                      </Box>
                     ))}
                   </Box>
                 </Box>
 
                 <Box>
                   <Heading as="h3" size="md" mb={4} color="teal.400">
-                    👩‍🍳 Modo de Preparo:
+                    👩‍🍳 Modo de Preparação:
                   </Heading>
                   <Text 
                     whiteSpace="pre-line" 
@@ -312,1178 +409,461 @@ export default function Home({ receitas }) {
                     {receitaDoDia.modoPreparo}
                   </Text>
                 </Box>
+
+                {/* Seção de Informações Nutricionais */}
+                {receitaDoDia.informacoesNutricionais && (
+                  <Box mt={6} p={4} bg={hoverBg} borderRadius="md">
+                    <Heading as="h3" size="md" mb={4} color="teal.400">
+                      📊 Informações Nutricionais:
+                    </Heading>
+                    <SimpleGrid columns={[2, 3]} spacing={4}>
+                      <Box>
+                        <Text fontWeight="bold">Calorias:</Text>
+                        <Text>{receitaDoDia.informacoesNutricionais.calorias}</Text>
+                      </Box>
+                      <Box>
+                        <Text fontWeight="bold">Proteínas:</Text>
+                        <Text>{receitaDoDia.informacoesNutricionais.proteinas}</Text>
+                      </Box>
+                      <Box>
+                        <Text fontWeight="bold">Hidratos de Carbono:</Text>
+                        <Text>{receitaDoDia.informacoesNutricionais.carboidratos}</Text>
+                      </Box>
+                      <Box>
+                        <Text fontWeight="bold">Gorduras:</Text>
+                        <Text>{receitaDoDia.informacoesNutricionais.gorduras}</Text>
+                      </Box>
+                      <Box>
+                        <Text fontWeight="bold">Fibras:</Text>
+                        <Text>{receitaDoDia.informacoesNutricionais.fibras}</Text>
+                      </Box>
+                      <Box>
+                        <Text fontWeight="bold">Sódio:</Text>
+                        <Text>{receitaDoDia.informacoesNutricionais.sodio}</Text>
+                      </Box>
+                    </SimpleGrid>
+                  </Box>
+                )}
+
+                {/* Seção de Benefícios para a Saúde */}
+                {receitaDoDia.beneficiosSaude && (
+                  <Box mt={6} p={4} bg={hoverBg} borderRadius="md">
+                    <Heading as="h3" size="md" mb={4} color="teal.400">
+                      💪 Benefícios para a Saúde:
+                    </Heading>
+                    <List spacing={2}>
+                      {receitaDoDia.beneficiosSaude.map((beneficio, index) => (
+                        <ListItem 
+                          key={index}
+                          display="flex"
+                          alignItems="center"
+                        >
+                          <Box as="span" mr={2}>•</Box>
+                          {beneficio}
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Box>
+                )}
+
+                {/* Seção de Dicas do Chef */}
+                {receitaDoDia.dicas && (
+                  <Box mt={6} p={4} bg={hoverBg} borderRadius="md">
+                    <Heading as="h3" size="md" mb={4} color="teal.400">
+                      👨‍🍳 Dicas do Chefe:
+                    </Heading>
+                    <List spacing={2}>
+                      {receitaDoDia.dicas.map((dica, index) => (
+                        <ListItem 
+                          key={index}
+                          display="flex"
+                          alignItems="center"
+                        >
+                          <Box as="span" mr={2}>•</Box>
+                          {dica}
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Box>
+                )}
+
+                {/* Seção de Tempo de Preparo Detalhado */}
+                <Box mt={6} p={4} bg={hoverBg} borderRadius="md">
+                  <Heading as="h3" size="md" mb={4} color="teal.400">
+                    ⏲️ Tempo de Preparo Detalhado:
+                  </Heading>
+                  <SimpleGrid columns={[1, 3]} spacing={4}>
+                    <Box>
+                      <Text fontWeight="bold">Preparo:</Text>
+                      <Text>15 minutos</Text>
+                    </Box>
+                    <Box>
+                      <Text fontWeight="bold">Cozimento:</Text>
+                      <Text>25 minutos</Text>
+                    </Box>
+                    <Box>
+                      <Text fontWeight="bold">Total:</Text>
+                      <Text>{receitaDoDia.tempoPreparo}</Text>
+                    </Box>
+                  </SimpleGrid>
+                </Box>
+
+                {/* Seção de Utensílios Necessários */}
+                <Box mt={6} p={4} bg={hoverBg} borderRadius="md">
+                  <Heading as="h3" size="md" mb={4} color="teal.400">
+                    🍳 Utensílios Necessários:
+                  </Heading>
+                  <SimpleGrid columns={[2, 3, 4]} spacing={4}>
+                    {["Panela grande", "Tábua de corte", "Faca afiada", "Colher de pau", "Escorredor", "Tigelas"].map((utensilio, index) => (
+                      <Box key={index} p={2} bg="white" borderRadius="md" shadow="sm">
+                        <Text>{utensilio}</Text>
+                      </Box>
+                    ))}
+                  </SimpleGrid>
+                </Box>
+
+                {/* Seção de Variações da Receita */}
+                <Box mt={6} p={4} bg={hoverBg} borderRadius="md">
+                  <Heading as="h3" size="md" mb={4} color="teal.400">
+                    🔄 Variações da Receita:
+                  </Heading>
+                  <List spacing={2}>
+                    <ListItem>Versão sem glúten: Substitua a farinha de trigo por farinha de arroz</ListItem>
+                    <ListItem>Versão sem lactose: Use queijos sem lactose ou substitutos vegetais</ListItem>
+                    <ListItem>Versão mais leve: Asse em vez de fritar</ListItem>
+                  </List>
+                </Box>
+
+                {/* Seção de Harmonização */}
+                <Box mt={6} p={4} bg={hoverBg} borderRadius="md">
+                  <Heading as="h3" size="md" mb={4} color="teal.400">
+                    🍷 Harmonização:
+                  </Heading>
+                  <List spacing={2}>
+                    <ListItem>Vinho: Sugestão de vinho tinto meio seco</ListItem>
+                    <ListItem>Sobremesa: Combina bem com sobremesas leves</ListItem>
+                    <ListItem>Acompanhamentos: Arroz branco, salada verde</ListItem>
+                  </List>
+                </Box>
+
+                {/* Seção de Dicas de Armazenamento */}
+                <Box mt={6} p={4} bg={hoverBg} borderRadius="md">
+                  <Heading as="h3" size="md" mb={4} color="teal.400">
+                    🗄️ Armazenamento:
+                  </Heading>
+                  <List spacing={2}>
+                    <ListItem>Geladeira: Conserva por até 3 dias em recipiente fechado</ListItem>
+                    <ListItem>Freezer: Pode ser congelado por até 2 meses</ListItem>
+                    <ListItem>Como reaquecer: Instruções para melhor resultado</ListItem>
+                  </List>
+                </Box>
               </Box>
             )}
 
             {!receitaDoDia && <CTASection />}
+
+            {/* Seção de Recursos Educacionais */}
+            <Box w="full" p={6} bg={cardBg} borderRadius="xl" boxShadow="xl">
+              <Heading as="h2" size="lg" mb={4} color="teal.500">
+                 Recursos para Aprender
+              </Heading>
+              <LearningResources />
+            </Box>
+
+            {/* Seção de Política de Privacidade */}
+            <Box w="full" p={6} bg={cardBg} borderRadius="xl" boxShadow="xl" fontSize="sm" color="gray.600">
+              <Text mb={2}>
+                Este site utiliza cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa{' '}
+                <NextLink href="/privacidade" passHref legacyBehavior>
+                  <Box
+                    as="a"
+                    color="teal.500"
+                    display="inline"
+                    _hover={{ textDecoration: 'underline' }}
+                  >
+                    Política de Privacidade
+                  </Box>
+                </NextLink>
+                .
+              </Text>
+            </Box>
+
+            <AdComponent />
           </VStack>
         </Container>
       </Box>
+
+      {/* Modal de Dicas do Chef */}
+      {selectedIngredient && (
+        <Box
+          position="fixed"
+          top="50%"
+          left="50%"
+          transform="translate(-50%, -50%)"
+          maxW="600px"
+          w="90%"
+          zIndex={1000}
+        >
+          <IngredientTips 
+            ingredient={selectedIngredient}
+            onClose={() => setSelectedIngredient(null)}
+          />
+        </Box>
+      )}
     </>
   )
 }
 
 export async function getStaticProps() {
   const receitas = [
+    // Receitas Onívoras
     {
-      nome: "Frango Grelhado com Legumes",
-      tempoPreparo: "30 minutos",
-      prepTime: "PT10M",
-      cookTime: "PT20M",
-      totalTime: "PT30M",
-      porcoes: "4 porções",
-      dificuldade: "Fácil",
-      categoria: "onivoro",
-      imagem: "https://source.unsplash.com/featured/?grilled,chicken",
-      ingredientes: [
-        "4 filés de frango",
-        "2 cenouras médias cortadas em rodelas",
-        "2 abobrinhas médias em cubos",
-        "1 cebola em fatias",
-        "3 dentes de alho picados",
-        "2 colheres de sopa de azeite",
-        "Sal e pimenta a gosto",
-        "Temperos frescos (tomilho, alecrim) a gosto"
-      ],
-      modoPreparo: "1. Tempere os filés de frango com sal, pimenta e alho\n2. Aqueça uma frigideira grande com 1 colher de azeite\n3. Grelhe o frango por 5-7 minutos de cada lado\n4. Reserve o frango\n5. Na mesma frigideira, adicione o restante do azeite\n6. Refogue a cebola até ficar transparente\n7. Adicione as cenouras e cozinhe por 5 minutos\n8. Acrescente a abobrinha e cozinhe por mais 3 minutos\n9. Tempere os legumes com sal e pimenta\n10. Sirva o frango com os legumes e decore com os temperos frescos",
-      informacoesNutricionais: {
-        calorias: "320",
-        gorduras: "12g",
-        gordurasSaturadas: "2.5g",
-        carboidratos: "8g",
-        proteinas: "45g",
-        fibras: "3g",
-        sodio: "380mg"
-      },
-      dicas: [
-        "Para um frango mais suculento, deixe marinar por 30 minutos antes de grelhar",
-        "Você pode substituir os legumes por outros de sua preferência",
-        "Para uma versão mais leve, use peito de frango sem pele"
-      ],
-      faq: [
-        {
-          pergunta: "Posso preparar o frango no forno?",
-          resposta: "Sim! Asse a 200°C por cerca de 25-30 minutos, virando na metade do tempo."
-        },
-        {
-          pergunta: "Como saber se o frango está no ponto?",
-          resposta: "O frango está pronto quando estiver dourado por fora e, ao cortar, a carne estiver completamente branca, sem partes rosadas."
-        }
-      ]
-    },
-    {
-      nome: "Risoto de Cogumelos",
+      nome: "Frango à Parmegiana",
       tempoPreparo: "45 minutos",
-      prepTime: "PT15M",
-      cookTime: "PT30M",
-      totalTime: "PT45M",
-      porcoes: "6 porções",
+      porcoes: "4 porções",
       dificuldade: "Médio",
-      categoria: "vegetariano",
-      imagem: "https://loremflickr.com/800/600/risotto,mushrooms",
+      dieta: "onivoro",
+      imagem: "https://source.unsplash.com/featured/?chicken,parmesan",
       ingredientes: [
-        "2 xícaras de arroz arbóreo",
-        "400g de cogumelos variados",
-        "1 cebola média picada",
-        "3 dentes de alho picados",
-        "1/2 xícara de vinho branco seco",
-        "4-5 xícaras de caldo de legumes quente",
-        "1/2 xícara de queijo parmesão ralado",
-        "2 colheres de sopa de manteiga",
+        "4 filés de frango (cerca de 150g cada)",
+        "2 ovos batidos",
+        "2 xícaras de farinha de rosca",
+        "1 xícara de queijo parmesão ralado",
+        "2 xícaras de molho de tomate caseiro",
+        "200g de queijo mussarela",
         "Sal e pimenta a gosto",
-        "Salsinha picada para finalizar"
+        "Óleo para fritar",
+        "2 dentes de alho picados",
+        "Orégano a gosto"
       ],
-      modoPreparo: "1. Em uma panela, aqueça 1 colher de manteiga e refogue os cogumelos até dourarem\n2. Reserve os cogumelos\n3. Na mesma panela, refogue a cebola e o alho\n4. Adicione o arroz e refogue por 2 minutos\n5. Acrescente o vinho branco e mexa até evaporar\n6. Adicione o caldo de legumes, uma concha por vez, mexendo sempre\n7. Continue adicionando o caldo e mexendo até o arroz ficar al dente\n8. Incorpore os cogumelos reservados\n9. Finalize com o queijo parmesão e a manteiga restante\n10. Ajuste o sal e a pimenta\n11. Sirva decorado com salsinha"
-    },
-    {
-      nome: "Bolo de Chocolate Vegano",
-      tempoPreparo: "50 minutos",
-      prepTime: "PT15M",
-      cookTime: "PT35M",
-      totalTime: "PT50M",
-      porcoes: "8 porções",
-      dificuldade: "Fácil",
-      categoria: "vegano",
-      imagem: "https://source.unsplash.com/featured/?vegan,chocolate,cake",
-      ingredientes: [
-        "2 xícaras de farinha de trigo",
-        "1 xícara de cacau em pó",
-        "2 xícaras de açúcar",
-        "2 colheres de chá de fermento",
-        "1 colher de chá de bicarbonato",
-        "1/2 colher de chá de sal",
-        "2 xícaras de leite vegetal",
-        "1/2 xícara de óleo vegetal",
-        "2 colheres de chá de extrato de baunilha",
-        "1 colher de sopa de vinagre de maçã"
-      ],
-      modoPreparo: "1. Pré-aqueça o forno a 180°C\n2. Unte uma forma redonda com óleo e cacau\n3. Em uma tigela, misture todos os ingredientes secos\n4. Em outra tigela, misture todos os ingredientes líquidos\n5. Combine as misturas até formar uma massa homogênea\n6. Despeje na forma preparada\n7. Asse por 35-40 minutos ou até um palito sair limpo\n8. Deixe esfriar antes de desenformar\n9. Decore com ganache vegano se desejar",
+      modoPreparo: "1. Tempere os filés com sal, pimenta e alho picado. Deixe marinar por 15 minutos\n2. Prepare três pratos: um com farinha de trigo, outro com os ovos batidos, e o terceiro com a mistura de farinha de rosca\n3. Passe cada filé primeiro na farinha, depois no ovo e por último na mistura de farinha de rosca\n4. Aqueça o óleo em fogo médio\n5. Frite os filés até ficarem dourados dos dois lados (cerca de 4-5 minutos cada lado)\n6. Coloque os filés em uma forma\n7. Cubra cada filé com molho de tomate e fatias de mussarela\n8. Polvilhe orégano a gosto\n9. Leve ao forno preaquecido a 180°C por 10-15 minutos ou até o queijo derreter\n10. Sirva quente, acompanhado de arroz e salada",
       informacoesNutricionais: {
-        calorias: "280",
-        gorduras: "12g",
-        gordurasSaturadas: "1.5g",
-        carboidratos: "42g",
-        proteinas: "4g",
-        fibras: "3g",
-        sodio: "250mg"
+        calorias: "450 kcal por porção",
+        proteinas: "38g",
+        carboidratos: "25g",
+        gorduras: "22g",
+        fibras: "2g",
+        sodio: "680mg"
       },
       dicas: [
-        "Para um bolo mais úmido, adicione 1/2 xícara de purê de maçã",
-        "O vinagre de maçã reage com o bicarbonato, deixando o bolo mais fofo",
-        "Você pode substituir o leite vegetal por água, mas o sabor ficará menos rico"
+        "Para um frango mais suculento, deixe marinar por mais tempo",
+        "O molho de tomate caseiro dá mais sabor que o industrializado",
+        "Você pode usar o forno para dourar em vez de fritar, tornando a receita mais saudável"
       ],
-      faq: [
-        {
-          pergunta: "Posso usar outro tipo de farinha?",
-          resposta: "Sim, você pode usar farinha integral ou de aveia, mas a textura pode ficar diferente."
-        },
-        {
-          pergunta: "Como fazer o ganache vegano?",
-          resposta: "Misture chocolate meio amargo vegano derretido com leite de coco cremoso na proporção 1:1."
-        }
+      beneficiosSaude: [
+        "Rico em proteínas para construção muscular",
+        "Fonte de cálcio pelo queijo",
+        "Contém licopeno do molho de tomate"
       ]
     },
     {
-      nome: "Curry de Grão de Bico",
+      nome: "Picanha na Churrasqueira",
       tempoPreparo: "40 minutos",
-      prepTime: "PT10M",
-      cookTime: "PT30M",
-      totalTime: "PT40M",
-      porcoes: "4 porções",
-      dificuldade: "Fácil",
-      categoria: "vegano",
-      imagem: "https://source.unsplash.com/featured/?curry,chickpea",
-      ingredientes: [
-        "2 latas de grão de bico",
-        "1 lata de leite de coco",
-        "2 cebolas picadas",
-        "4 dentes de alho",
-        "2 colheres de curry em pó",
-        "1 colher de gengibre ralado",
-        "1 lata de tomate pelado",
-        "Coentro fresco",
-        "Sal e pimenta a gosto"
-      ],
-      modoPreparo: "1. Refogue a cebola e o alho\n2. Adicione o curry e o gengibre\n3. Acrescente o tomate e o grão de bico\n4. Adicione o leite de coco\n5. Cozinhe por 20 minutos\n6. Finalize com coentro",
-      informacoesNutricionais: {
-        calorias: "320",
-        gorduras: "14g",
-        gordurasSaturadas: "8g",
-        carboidratos: "42g",
-        proteinas: "12g",
-        fibras: "8g",
-        sodio: "380mg"
-      }
-    },
-    {
-      nome: "Salada de Quinoa com Legumes",
-      tempoPreparo: "25 minutos",
-      prepTime: "PT10M",
-      cookTime: "PT15M",
-      totalTime: "PT25M",
-      porcoes: "4 porções",
-      dificuldade: "Fácil",
-      categoria: "vegano",
-      imagem: "https://source.unsplash.com/featured/?quinoa,salad",
-      ingredientes: [
-        "1 xícara de quinoa",
-        "2 cenouras raladas",
-        "1 pepino em cubos",
-        "1 pimentão vermelho picado",
-        "Folhas de hortelã",
-        "Suco de 1 limão",
-        "Azeite de oliva",
-        "Sal e pimenta a gosto"
-      ],
-      modoPreparo: "1. Cozinhe a quinoa conforme instruções da embalagem\n2. Misture com os legumes\n3. Tempere com limão, azeite, sal e pimenta\n4. Finalize com hortelã",
-      informacoesNutricionais: {
-        calorias: "220",
-        gorduras: "8g",
-        gordurasSaturadas: "1g",
-        carboidratos: "32g",
-        proteinas: "8g",
-        fibras: "5g",
-        sodio: "180mg"
-      }
-    },
-    {
-      nome: "Salmão ao Molho de Limão",
-      tempoPreparo: "25 minutos",
-      prepTime: "PT10M",
-      cookTime: "PT15M",
-      totalTime: "PT25M",
-      porcoes: "2 porções",
+      porcoes: "6 porções",
       dificuldade: "Médio",
-      categoria: "onivoro",
-      imagem: "https://loremflickr.com/800/600/salmon,fish",
+      dieta: "onivoro",
+      imagem: "https://loremflickr.com/800/600/picanha,beef",
       ingredientes: [
-        "2 filés de salmão",
-        "Suco de 2 limões",
-        "2 colheres de sopa de azeite",
-        "2 dentes de alho picados",
-        "Sal e pimenta a gosto",
-        "Ervas frescas (dill, salsinha)"
+        "1 peça de picanha (1,2kg)",
+        "Sal grosso a gosto",
+        "Pimenta do reino moída",
+        "Alho em pó (opcional)",
+        "Azeite"
       ],
-      modoPreparo: "1. Tempere os filés com sal e pimenta\n2. Misture o suco de limão, azeite e alho\n3. Regue o salmão com o molho\n4. Asse por 15-20 minutos\n5. Finalize com ervas frescas"
+      modoPreparo: "1. Tempere a picanha\n2. Pré-aqueça a churrasqueira\n3. Grelhe com a gordura para cima\n4. Vire após dourar\n5. Deixe no ponto desejado"
     },
     {
-      nome: "Salada Caesar",
-      tempoPreparo: "20 minutos",
+      nome: "Salmão ao Molho de Maracujá",
+      tempoPreparo: "35 minutos",
       porcoes: "4 porções",
-      dificuldade: "Fácil",
-      imagem: "https://loremflickr.com/800/600/salad",
+      dificuldade: "Médio",
+      dieta: "onivoro",
+      imagem: "https://source.unsplash.com/featured/?salmon",
       ingredientes: [
-        "2 corações de alface romana",
-        "200g de frango grelhado em tiras",
-        "Croutons caseiros",
-        "Queijo parmesão ralado",
-        "Molho Caesar"
+        "4 filés de salmão (180g cada)",
+        "2 maracujás maduros",
+        "200ml de creme de leite fresco",
+        "1 colher de manteiga",
+        "Sal e pimenta do reino a gosto",
+        "Ervas frescas (dill, salsinha)",
+        "1 limão",
+        "2 dentes de alho",
+        "Azeite de oliva extra virgem"
       ],
-      modoPreparo: "1. Lave e corte a alface\n2. Grelhe o frango e corte em tiras\n3. Monte a salada com alface, frango e croutons\n4. Finalize com molho e queijo"
+      modoPreparo: "1. Tempere os filés de salmão com sal, pimenta e suco de limão\n2. Aqueça uma frigideira antiaderente com azeite\n3. Sele os filés por 4-5 minutos de cada lado\n4. Para o molho, extraia a polpa dos maracujás\n5. Em uma panela, derreta a manteiga e refogue o alho\n6. Adicione a polpa de maracujá e deixe reduzir\n7. Acrescente o creme de leite e cozinhe em fogo baixo\n8. Tempere o molho com sal e pimenta\n9. Sirva o salmão regado com o molho\n10. Decore com ervas frescas",
+      informacoesNutricionais: {
+        calorias: "380 kcal por porção",
+        proteinas: "32g",
+        carboidratos: "8g",
+        gorduras: "25g",
+        fibras: "1g",
+        sodio: "320mg"
+      },
+      dicas: [
+        "Escolha salmão fresco com cor viva e brilhante",
+        "O ponto ideal do salmão é quando ele está levemente rosado no centro",
+        "Você pode substituir o maracujá por laranja ou limão siciliano"
+      ],
+      beneficiosSaude: [
+        "Rico em ômega-3 para saúde cardiovascular",
+        "Fonte de vitamina D",
+        "Antioxidantes do maracujá"
+      ]
     },
     {
-      nome: "Smoothie de Frutas Vermelhas",
-      tempoPreparo: "5 minutos",
-      porcoes: "2 porções",
-      dificuldade: "Fácil",
-      imagem: "https://loremflickr.com/800/600/smoothie,berries",
-      ingredientes: [
-        "2 xícaras de frutas vermelhas congeladas",
-        "1 banana",
-        "1 xícara de iogurte natural",
-        "1 colher de mel",
-        "1/2 xícara de leite"
-      ],
-      modoPreparo: "1. Coloque todos os ingredientes no liquidificador\n2. Bata até ficar cremoso\n3. Sirva imediatamente"
-    },
-    {
-      nome: "Lasanha à Bolonhesa",
-      tempoPreparo: "90 minutos",
+      nome: "Feijoada Tradicional",
+      tempoPreparo: "180 minutos",
       porcoes: "8 porções",
-      dificuldade: "Médio",
-      imagem: "https://loremflickr.com/800/600/lasagna",
+      dificuldade: "Difícil",
+      dieta: "onivoro",
+      imagem: "https://loremflickr.com/800/600/feijoada",
       ingredientes: [
-        "Massa de lasanha",
-        "500g de carne moída",
-        "Molho de tomate",
-        "Molho bechamel",
-        "Queijo mussarela",
-        "Queijo parmesão"
+        "1kg de feijão preto",
+        "Carnes variadas",
+        "Linguiça",
+        "Bacon",
+        "Temperos tradicionais",
+        "Laranjas para acompanhar"
       ],
-      modoPreparo: "1. Prepare o molho bolonhesa\n2. Prepare o molho bechamel\n3. Monte camadas alternadas\n4. Asse por 45 minutos"
+      modoPreparo: "1. Deixe o feijão de molho\n2. Cozinhe as carnes\n3. Junte tudo\n4. Cozinhe até ficar macio"
     },
     {
-      nome: "Pão de Queijo",
-      tempoPreparo: "30 minutos",
-      porcoes: "20 unidades",
-      dificuldade: "Fácil",
-      imagem: "https://loremflickr.com/800/600/cheese,bread",
-      ingredientes: [
-        "500g de polvilho azedo",
-        "1 xícara de leite",
-        "1/2 xícara de óleo",
-        "2 ovos",
-        "200g de queijo minas curado ralado",
-        "Sal a gosto"
-      ],
-      modoPreparo: "1. Ferva leite com óleo\n2. Escalde o polvilho\n3. Adicione ovos e queijo\n4. Modele e asse"
-    },
-    {
-      nome: "Mousse de Maracujá",
-      tempoPreparo: "15 minutos",
-      porcoes: "6 porções",
-      dificuldade: "Fácil",
-      imagem: "https://loremflickr.com/800/600/mousse,dessert",
-      ingredientes: [
-        "1 lata de leite condensado",
-        "1 lata de suco de maracujá",
-        "1 lata de creme de leite",
-        "Polpa de maracujá para decorar"
-      ],
-      modoPreparo: "1. Bata o leite condensado e o suco no liquidificador\n2. Adicione o creme de leite\n3. Despeje em taças\n4. Leve à geladeira por 4 horas\n5. Decore com polpa de maracujá"
-    },
-    {
-      nome: "Strogonoff de Frango",
+      nome: "Strogonoff de Carne",
       tempoPreparo: "40 minutos",
-      prepTime: "PT15M",
-      cookTime: "PT25M",
-      totalTime: "PT40M",
       porcoes: "6 porções",
-      dificuldade: "Médio",
-      categoria: "onivoro",
-      imagem: "https://loremflickr.com/800/600/chicken,strogonoff",
+      dificuldade: "Fácil",
+      dieta: "onivoro",
+      imagem: "https://loremflickr.com/800/600/beef,stroganoff",
       ingredientes: [
-        "800g de frango em cubos",
+        "700g de carne em tiras",
         "2 cebolas",
         "3 dentes de alho",
         "200g de champignons",
         "2 caixas de creme de leite",
-        "4 colheres de ketchup",
-        "2 colheres de mostarda",
-        "Batata palha para servir"
+        "Catchup e mostarda",
+        "Batata palha"
       ],
-      modoPreparo: "1. Refogue o frango com cebola e alho\n2. Adicione os champignons\n3. Acrescente creme de leite, ketchup e mostarda\n4. Sirva com batata palha"
+      modoPreparo: "1. Refogue a carne\n2. Adicione os temperos\n3. Finalize com creme de leite\n4. Sirva com arroz e batata palha"
     },
+
+    // Novas Receitas Veganas
     {
-      nome: "Tapioca com Queijo e Presunto",
-      tempoPreparo: "10 minutos",
-      porcoes: "1 porção",
-      dificuldade: "Fácil",
-      imagem: "https://loremflickr.com/800/600/tapioca,food",
-      ingredientes: [
-        "3 colheres de goma de tapioca",
-        "2 fatias de queijo",
-        "2 fatias de presunto",
-        "Orégano a gosto"
-      ],
-      modoPreparo: "1. Aqueça uma frigideira\n2. Espalhe a goma de tapioca\n3. Quando firmar, vire\n4. Adicione queijo e presunto\n5. Dobre e sirva"
-    },
-    {
-      nome: "Brigadeiro Gourmet",
-      tempoPreparo: "30 minutos",
-      porcoes: "30 unidades",
-      dificuldade: "Médio",
-      imagem: "https://loremflickr.com/800/600/chocolate,brigadeiro",
-      ingredientes: [
-        "2 latas de leite condensado",
-        "200g de chocolate 70% cacau",
-        "1 colher de manteiga",
-        "Chocolate granulado para decorar"
-      ],
-      modoPreparo: "1. Derreta o chocolate em banho-maria\n2. Misture com leite condensado e manteiga\n3. Cozinhe até soltar do fundo\n4. Deixe esfriar\n5. Faça as bolinhas e passe no granulado"
-    },
-    {
-      nome: "Yakisoba",
-      tempoPreparo: "45 minutos",
-      porcoes: "4 porções",
-      dificuldade: "Médio",
-      imagem: "https://loremflickr.com/800/600/noodles,yakisoba",
-      ingredientes: [
-        "400g de macarrão para yakisoba",
-        "300g de carne em tiras",
-        "Legumes variados",
-        "Molho shoyu",
-        "Óleo de gergelim"
-      ],
-      modoPreparo: "1. Cozinhe o macarrão\n2. Refogue a carne\n3. Adicione os legumes\n4. Misture o macarrão\n5. Finalize com molho shoyu e óleo de gergelim"
-    },
-    {
-      nome: "Feijoada Completa",
-      tempoPreparo: "180 minutos",
-      prepTime: "PT30M",
-      cookTime: "PT150M",
-      totalTime: "PT180M",
-      porcoes: "10 porções",
-      dificuldade: "Difícil",
-      categoria: "onivoro",
-      imagem: "https://loremflickr.com/800/600/feijoada,beans",
-      ingredientes: [
-        "1kg de feijão preto",
-        "Carnes variadas (costela, paio, linguiça)",
-        "2 laranjas",
-        "Couve refogada",
-        "Arroz branco",
-        "Farofa"
-      ],
-      modoPreparo: "1. Deixe o feijão de molho\n2. Cozinhe com as carnes\n3. Prepare os acompanhamentos\n4. Sirva com laranja"
-    },
-    {
-      nome: "Pizza Margherita",
+      nome: "Lasanha de Berinjela Vegana",
       tempoPreparo: "60 minutos",
-      porcoes: "8 fatias",
+      porcoes: "6 porções",
       dificuldade: "Médio",
-      imagem: "https://loremflickr.com/800/600/pizza,margherita",
+      dieta: "vegano",
+      imagem: "https://source.unsplash.com/featured/?eggplant,lasagna",
       ingredientes: [
-        "Massa de pizza",
-        "Molho de tomate",
-        "Mussarela de búfala",
+        "3 berinjelas grandes fatiadas",
+        "500ml de molho de tomate caseiro",
+        "200g de queijo vegano ralado",
+        "400g de tofu firme amassado",
+        "300g de espinafre fresco",
+        "2 dentes de alho picados",
+        "1 cebola média picada",
+        "2 colheres de sopa de azeite",
         "Manjericão fresco",
+        "Sal e pimenta a gosto",
+        "Noz moscada a gosto"
+      ],
+      modoPreparo: "1. Pré-aqueça o forno a 180°C\n2. Fatie as berinjelas em lâminas finas\n3. Grelhe as fatias de berinjela com um pouco de azeite até ficarem macias\n4. Para o recheio, refogue a cebola e o alho no azeite\n5. Adicione o espinafre e cozinhe até murchar\n6. Misture o tofu amassado com temperos e noz moscada\n7. Em um refratário, monte camadas: molho, berinjela, mistura de tofu, espinafre\n8. Repita as camadas finalizando com molho e queijo vegano\n9. Cubra com papel alumínio e asse por 30 minutos\n10. Retire o papel e asse por mais 15 minutos até dourar",
+      informacoesNutricionais: {
+        calorias: "280 kcal por porção",
+        proteinas: "15g",
+        carboidratos: "18g",
+        gorduras: "12g",
+        fibras: "8g",
+        sodio: "390mg"
+      },
+      dicas: [
+        "Escolha berinjelas firmes e brilhantes",
+        "Você pode salgar as fatias de berinjela antes para reduzir o amargor",
+        "O tofu firme é melhor para esta receita pois mantém a textura"
+      ],
+      beneficiosSaude: [
+        "Baixo teor calórico",
+        "Rica em fibras e antioxidantes",
+        "Fonte de proteína vegetal",
+        "Sem colesterol"
+      ]
+    },
+    {
+      nome: "Curry de Grão de Bico",
+      tempoPreparo: "45 minutos",
+      porcoes: "6 porções",
+      dificuldade: "Fácil",
+      dieta: "vegano",
+      imagem: "https://source.unsplash.com/featured/?chickpea,curry",
+      ingredientes: [
+        "2 latas de grão de bico (400g cada)",
+        "400ml de leite de coco",
+        "2 cebolas médias picadas",
+        "4 dentes de alho",
+        "2cm de gengibre fresco",
+        "2 colheres de sopa de curry em pó",
+        "1 colher de chá de cúrcuma",
+        "1 colher de chá de cominho",
+        "2 tomates maduros picados",
+        "Coentro fresco",
+        "Sal e pimenta a gosto",
         "Azeite de oliva"
       ],
-      modoPreparo: "1. Abra a massa\n2. Espalhe o molho\n3. Adicione queijo\n4. Asse em forno alto\n5. Finalize com manjericão"
-    },
-    {
-      nome: "Ceviche de Peixe",
-      tempoPreparo: "30 minutos",
-      prepTime: "PT20M",
-      cookTime: "PT10M",
-      totalTime: "PT30M",
-      porcoes: "4 porções",
-      dificuldade: "Médio",
-      categoria: "onivoro",
-      imagem: "https://loremflickr.com/800/600/ceviche,fish",
-      ingredientes: [
-        "500g de peixe branco",
-        "6 limões",
-        "1 cebola roxa",
-        "Coentro fresco",
-        "Pimenta a gosto"
-      ],
-      modoPreparo: "1. Corte o peixe em cubos\n2. Marine com limão\n3. Adicione cebola e temperos\n4. Sirva gelado"
-    },
-    {
-      nome: "Brownie de Chocolate",
-      tempoPreparo: "45 minutos",
-      porcoes: "12 porções",
-      dificuldade: "Médio",
-      imagem: "https://loremflickr.com/800/600/brownie,chocolate",
-      ingredientes: [
-        "200g de chocolate meio amargo",
-        "200g de manteiga",
-        "4 ovos",
-        "200g de açúcar",
-        "100g de farinha"
-      ],
-      modoPreparo: "1. Derreta chocolate e manteiga\n2. Misture ovos e açúcar\n3. Adicione farinha\n4. Asse por 25 minutos"
-    },
-    {
-      nome: "Pad Thai",
-      tempoPreparo: "40 minutos",
-      porcoes: "4 porções",
-      dificuldade: "Médio",
-      imagem: "https://loremflickr.com/800/600/padthai,noodles",
-      ingredientes: [
-        "Macarrão de arroz",
-        "Camarões",
-        "Broto de feijão",
-        "Amendoim",
-        "Molho de tamarindo"
-      ],
-      modoPreparo: "1. Hidrate o macarrão\n2. Prepare o molho\n3. Refogue os ingredientes\n4. Misture tudo\n5. Finalize com amendoim"
-    },
-    {
-      nome: "Bacalhau à Brás",
-      tempoPreparo: "45 minutos",
-      prepTime: "PT15M",
-      cookTime: "PT30M",
-      totalTime: "PT45M",
-      porcoes: "4 porções",
-      dificuldade: "Médio",
-      categoria: "onivoro",
-      imagem: "https://source.unsplash.com/featured/?cod,fish",
-      ingredientes: [
-        "400g de bacalhau desfiado",
-        "500g de batata palha",
-        "6 ovos",
-        "2 cebolas grandes",
-        "3 dentes de alho",
-        "Salsa picada",
-        "Azeitonas pretas",
-        "Azeite",
-        "Sal e pimenta a gosto"
-      ],
-      modoPreparo: "1. Refogue a cebola e o alho no azeite\n2. Adicione o bacalhau e refogue\n3. Junte a batata palha\n4. Bata os ovos e adicione\n5. Mexa até os ovos estarem cozidos\n6. Finalize com salsa e azeitonas"
-    },
-    {
-      nome: "Bolo de Cenoura com Cobertura de Chocolate",
-      tempoPreparo: "50 minutos",
-      porcoes: "12 fatias",
-      dificuldade: "Fácil",
-      imagem: "https://source.unsplash.com/featured/?carrot,cake",
-      ingredientes: [
-        "3 cenouras médias",
-        "4 ovos",
-        "1 xícara de óleo",
-        "2 xícaras de açúcar",
-        "2 xícaras de farinha de trigo",
-        "1 colher de fermento",
-        "200g de chocolate meio amargo",
-        "1 lata de creme de leite"
-      ],
-      modoPreparo: "1. Bata no liquidificador as cenouras, ovos e óleo\n2. Misture com açúcar e farinha\n3. Adicione o fermento\n4. Asse por 40 minutos\n5. Para a cobertura, derreta o chocolate\n6. Misture com creme de leite\n7. Cubra o bolo"
-    },
-    {
-      nome: "Caldo Verde",
-      tempoPreparo: "60 minutos",
-      porcoes: "6 porções",
-      dificuldade: "Fácil",
-      imagem: "https://source.unsplash.com/featured/?soup,green",
-      ingredientes: [
-        "1kg de batatas",
-        "400g de couve portuguesa",
-        "2 cebolas",
-        "3 dentes de alho",
-        "200g de linguiça portuguesa",
-        "Azeite",
-        "Sal a gosto"
-      ],
-      modoPreparo: "1. Cozinhe as batatas com as cebolas\n2. Bata no liquidificador\n3. Corte a couve em tiras finas\n4. Frite a linguiça\n5. Adicione a couve ao caldo\n6. Finalize com azeite"
-    },
-    {
-      nome: "Pastel de Nata",
-      tempoPreparo: "90 minutos",
-      porcoes: "12 unidades",
-      dificuldade: "Difícil",
-      imagem: "https://source.unsplash.com/featured/?pastry,custard",
-      ingredientes: [
-        "Massa folhada",
-        "500ml de leite",
-        "6 gemas",
-        "200g de açúcar",
-        "Casca de limão",
-        "Canela em pau",
-        "2 colheres de farinha"
-      ],
-      modoPreparo: "1. Prepare o creme com leite e gemas\n2. Forre forminhas com massa folhada\n3. Preencha com o creme\n4. Asse em forno muito quente\n5. Polvilhe com canela"
-    },
-    {
-      nome: "Arroz com Lentilha e Legumes",
-      tempoPreparo: "35 minutos",
-      prepTime: "PT10M",
-      cookTime: "PT25M",
-      totalTime: "PT35M",
-      porcoes: "4 porções",
-      dificuldade: "Fácil",
-      categoria: "vegano",
-      imagem: "https://source.unsplash.com/featured/?lentils,rice",
-      ingredientes: [
-        "1 xícara de lentilha",
-        "2 xícaras de arroz",
-        "1 cebola picada",
-        "2 cenouras em cubos",
-        "1 abobrinha em cubos",
-        "3 dentes de alho",
-        "Azeite",
-        "Sal e pimenta a gosto",
-        "Cheiro verde"
-      ],
-      modoPreparo: "1. Cozinhe a lentilha em água por 15 minutos\n2. Em outra panela, refogue alho e cebola\n3. Adicione o arroz e refogue\n4. Acrescente água quente e cozinhe\n5. Refogue os legumes separadamente\n6. Misture tudo e finalize com cheiro verde",
+      modoPreparo: "1. Escorra e enxágue o grão de bico\n2. Em uma panela grande, refogue a cebola no azeite até dourar\n3. Adicione alho e gengibre ralados e cozinhe por 2 minutos\n4. Acrescente as especiarias e cozinhe até liberar o aroma\n5. Adicione os tomates e cozinhe até amolecerem\n6. Acrescente o grão de bico e o leite de coco\n7. Deixe cozinhar em fogo baixo por 20 minutos\n8. Ajuste os temperos\n9. Finalize com coentro fresco\n10. Sirva com arroz basmati",
       informacoesNutricionais: {
-        calorias: "280",
-        gorduras: "4g",
-        gordurasSaturadas: "0.5g",
-        carboidratos: "52g",
-        proteinas: "10g",
-        fibras: "7g",
-        sodio: "180mg"
-      }
-    },
-    {
-      nome: "Sopa de Legumes com Macarrão",
-      tempoPreparo: "30 minutos",
-      prepTime: "PT10M",
-      cookTime: "PT20M",
-      totalTime: "PT30M",
-      porcoes: "4 porções",
-      dificuldade: "Fácil",
-      categoria: "vegano",
-      imagem: "https://source.unsplash.com/featured/?vegetable,soup",
-      ingredientes: [
-        "1 pacote de macarrão tipo padre nosso",
-        "2 batatas em cubos",
-        "2 cenouras em rodelas",
-        "1 cebola picada",
-        "2 tomates picados",
-        "Couve em tiras",
-        "2 dentes de alho",
-        "Sal e temperos a gosto"
-      ],
-      modoPreparo: "1. Refogue alho e cebola\n2. Adicione os legumes e água\n3. Cozinhe até os legumes ficarem macios\n4. Acrescente o macarrão\n5. Finalize com a couve",
-      informacoesNutricionais: {
-        calorias: "220",
-        gorduras: "2g",
-        gordurasSaturadas: "0.3g",
-        carboidratos: "45g",
-        proteinas: "7g",
-        fibras: "4g",
-        sodio: "150mg"
-      }
-    },
-    {
-      nome: "Farofa de Proteína de Soja",
-      tempoPreparo: "20 minutos",
-      prepTime: "PT5M",
-      cookTime: "PT15M",
-      totalTime: "PT20M",
-      porcoes: "4 porções",
-      dificuldade: "Fácil",
-      categoria: "vegano",
-      imagem: "https://source.unsplash.com/featured/?farofa",
-      ingredientes: [
-        "2 xícaras de farinha de mandioca",
-        "1 xícara de proteína de soja",
-        "1 cebola picada",
-        "3 dentes de alho",
-        "Azeite ou óleo",
-        "Sal e pimenta a gosto",
-        "Cheiro verde"
-      ],
-      modoPreparo: "1. Hidrate a proteína de soja em água quente\n2. Refogue alho e cebola\n3. Adicione a proteína de soja e tempere\n4. Acrescente a farinha aos poucos\n5. Finalize com cheiro verde",
-      informacoesNutricionais: {
-        calorias: "180",
-        gorduras: "6g",
-        gordurasSaturadas: "0.8g",
-        carboidratos: "24g",
-        proteinas: "8g",
-        fibras: "3g",
-        sodio: "120mg"
-      }
-    },
-    {
-      nome: "Strogonoff de Grão de Bico",
-      tempoPreparo: "40 minutos",
-      prepTime: "PT10M",
-      cookTime: "PT30M",
-      totalTime: "PT40M",
-      porcoes: "4 porções",
-      dificuldade: "Médio",
-      categoria: "vegetariano",
-      imagem: "https://source.unsplash.com/featured/?chickpea,stew",
-      ingredientes: [
-        "2 latas de grão de bico",
-        "1 cebola grande picada",
-        "3 dentes de alho",
-        "1 caixa de creme de leite",
-        "3 colheres de molho de tomate",
-        "1 colher de mostarda",
-        "Champignons (opcional)",
-        "Sal e pimenta a gosto",
-        "Batata palha para servir"
-      ],
-      modoPreparo: "1. Escorra e lave o grão de bico\n2. Refogue cebola e alho\n3. Adicione o grão de bico e tempere\n4. Acrescente molho de tomate e mostarda\n5. Finalize com creme de leite\n6. Sirva com batata palha",
-      informacoesNutricionais: {
-        calorias: "310",
-        gorduras: "12g",
-        gordurasSaturadas: "5g",
-        carboidratos: "42g",
+        calorias: "320 kcal por porção",
         proteinas: "12g",
-        fibras: "8g",
-        sodio: "280mg"
-      }
-    },
-    {
-      nome: "Escondidinho de Mandioca com Lentilha",
-      tempoPreparo: "50 minutos",
-      prepTime: "PT20M",
-      cookTime: "PT30M",
-      totalTime: "PT50M",
-      porcoes: "6 porções",
-      dificuldade: "Médio",
-      categoria: "vegano",
-      imagem: "https://source.unsplash.com/featured/?cassava,lentils",
-      ingredientes: [
-        "1kg de mandioca cozida",
-        "2 xícaras de lentilha",
-        "1 cebola grande",
-        "4 dentes de alho",
-        "2 tomates picados",
-        "Azeite",
-        "Sal e pimenta a gosto",
-        "Cheiro verde",
-        "Leite vegetal para o purê"
-      ],
-      modoPreparo: "1. Cozinhe a lentilha até ficar macia\n2. Faça um purê com a mandioca\n3. Refogue cebola, alho e tomates\n4. Misture com a lentilha e tempere\n5. Monte camadas de purê e lentilha\n6. Asse por 20 minutos",
-      informacoesNutricionais: {
-        calorias: "290",
-        gorduras: "5g",
-        gordurasSaturadas: "0.6g",
-        carboidratos: "52g",
-        proteinas: "11g",
-        fibras: "6g",
-        sodio: "200mg"
-      }
-    },
-    {
-      nome: "Bife à Parmegiana",
-      tempoPreparo: "45 minutos",
-      prepTime: "PT15M",
-      cookTime: "PT30M",
-      totalTime: "PT45M",
-      porcoes: "4 porções",
-      dificuldade: "Médio",
-      categoria: "onivoro",
-      imagem: "https://source.unsplash.com/featured/?steak,parmesan",
-      ingredientes: [
-        "4 bifes de contra filé",
-        "2 ovos batidos",
-        "Farinha de trigo para empanar",
-        "Farinha de rosca",
-        "Molho de tomate",
-        "200g de queijo mussarela",
-        "Queijo parmesão ralado",
-        "Sal e pimenta a gosto",
-        "Óleo para fritar"
-      ],
-      modoPreparo: "1. Tempere os bifes com sal e pimenta\n2. Passe na farinha de trigo, ovo e farinha de rosca\n3. Frite em óleo quente até dourar\n4. Cubra com molho de tomate e queijos\n5. Leve ao forno para gratinar",
-      informacoesNutricionais: {
-        calorias: "450",
-        gorduras: "22g",
-        gordurasSaturadas: "8g",
-        carboidratos: "28g",
-        proteinas: "42g",
-        fibras: "2g",
-        sodio: "680mg"
-      }
-    },
-    {
-      nome: "Almôndegas ao Sugo",
-      tempoPreparo: "40 minutos",
-      prepTime: "PT15M",
-      cookTime: "PT25M",
-      totalTime: "PT40M",
-      porcoes: "6 porções",
-      dificuldade: "Fácil",
-      categoria: "onivoro",
-      imagem: "https://source.unsplash.com/featured/?meatballs",
-      ingredientes: [
-        "500g de carne moída",
-        "1 ovo",
-        "2 fatias de pão de forma",
-        "Leite para umedecer o pão",
-        "1 cebola ralada",
-        "2 dentes de alho",
-        "Salsa picada",
-        "500ml de molho de tomate",
-        "Sal e pimenta a gosto"
-      ],
-      modoPreparo: "1. Misture a carne com ovo, pão umedecido, cebola e temperos\n2. Faça bolinhas pequenas\n3. Doure as almôndegas\n4. Adicione o molho de tomate\n5. Cozinhe por 15 minutos",
-      informacoesNutricionais: {
-        calorias: "320",
-        gorduras: "18g",
-        gordurasSaturadas: "6g",
-        carboidratos: "15g",
-        proteinas: "28g",
-        fibras: "2g",
-        sodio: "520mg"
-      }
-    },
-    {
-      nome: "Frango Xadrez",
-      tempoPreparo: "35 minutos",
-      prepTime: "PT15M",
-      cookTime: "PT20M",
-      totalTime: "PT35M",
-      porcoes: "4 porções",
-      dificuldade: "Médio",
-      categoria: "onivoro",
-      imagem: "https://source.unsplash.com/featured/?chicken,stir-fry",
-      ingredientes: [
-        "500g de peito de frango em cubos",
-        "1 pimentão vermelho",
-        "1 pimentão verde",
-        "1 cebola grande",
-        "2 cenouras",
-        "100g de amendoim torrado",
-        "Molho shoyu",
-        "Óleo de gergelim",
-        "Gengibre ralado",
-        "3 dentes de alho"
-      ],
-      modoPreparo: "1. Marine o frango com shoyu e gengibre\n2. Corte os legumes em cubos\n3. Refogue o frango\n4. Adicione os legumes\n5. Finalize com amendoim e óleo de gergelim",
-      informacoesNutricionais: {
-        calorias: "380",
-        gorduras: "16g",
-        gordurasSaturadas: "3g",
-        carboidratos: "12g",
-        proteinas: "35g",
-        fibras: "4g",
-        sodio: "450mg"
-      }
-    },
-    {
-      nome: "Caril de Legumes com Leite de Coco",
-      tempoPreparo: "40 minutos",
-      prepTime: "PT15M",
-      cookTime: "PT25M",
-      totalTime: "PT40M",
-      porcoes: "4 porções",
-      dificuldade: "Fácil",
-      categoria: "vegano",
-      imagem: "https://source.unsplash.com/featured/?curry,vegetables",
-      ingredientes: [
-        "2 batatas-doces médias em cubos",
-        "1 couve-flor pequena em floretes",
-        "2 cenouras em rodelas",
-        "1 lata de grão cozido",
-        "1 lata de leite de coco",
-        "1 cebola picada",
-        "4 dentes de alho",
-        "2 colheres de caril em pó",
-        "1 colher de gengibre ralado",
-        "Coentros frescos",
-        "Sal e pimenta q.b."
-      ],
-      modoPreparo: "1. Refogue a cebola e o alho em azeite\n2. Adicione o caril e o gengibre\n3. Junte os legumes e refogue por 5 minutos\n4. Adicione o leite de coco e um pouco de água\n5. Cozinhe até os legumes estarem macios\n6. Junte o grão e aqueça\n7. Finalize com coentros frescos",
-      informacoesNutricionais: {
-        calorias: "290",
-        gorduras: "14g",
-        gordurasSaturadas: "9g",
-        carboidratos: "38g",
-        proteinas: "8g",
-        fibras: "7g",
-        sodio: "320mg"
-      },
-      dicas: [
-        "Use leite de coco gordo para um molho mais cremoso",
-        "Pode substituir o grão por lentilhas",
-        "Sirva com arroz basmati para uma refeição completa"
-      ]
-    },
-    {
-      nome: "Bolonhesa de Lentilhas",
-      tempoPreparo: "45 minutos",
-      prepTime: "PT15M",
-      cookTime: "PT30M",
-      totalTime: "PT45M",
-      porcoes: "6 porções",
-      dificuldade: "Fácil",
-      categoria: "vegano",
-      imagem: "https://source.unsplash.com/featured/?lentils,pasta",
-      ingredientes: [
-        "2 chávenas de lentilhas",
-        "1 cenoura ralada",
-        "2 talos de aipo picados",
-        "1 cebola grande picada",
-        "4 dentes de alho",
-        "2 latas de tomate pelado",
-        "1 colher de orégãos secos",
-        "1 folha de louro",
-        "Vinho tinto (opcional)",
-        "Azeite",
-        "Sal e pimenta q.b."
-      ],
-      modoPreparo: "1. Cozinhe as lentilhas até ficarem al dente\n2. Refogue cebola, alho, cenoura e aipo\n3. Adicione o tomate e temperos\n4. Junte as lentilhas e cozinhe por 20 minutos\n5. Sirva com massa à escolha",
-      informacoesNutricionais: {
-        calorias: "260",
-        gorduras: "4g",
-        gordurasSaturadas: "0.5g",
-        carboidratos: "42g",
-        proteinas: "15g",
-        fibras: "18g",
-        sodio: "280mg"
-      },
-      dicas: [
-        "Triture parte das lentilhas para um molho mais espesso",
-        "Adicione cogumelos salteados para mais sabor",
-        "Pode congelar porções individuais"
-      ]
-    },
-    {
-      nome: "Hambúrguer de Feijão Preto",
-      tempoPreparo: "40 minutos",
-      prepTime: "PT20M",
-      cookTime: "PT20M",
-      totalTime: "PT40M",
-      porcoes: "6 porções",
-      dificuldade: "Médio",
-      categoria: "vegano",
-      imagem: "https://source.unsplash.com/featured/?burger,beans",
-      ingredientes: [
-        "2 latas de feijão preto escorrido",
-        "1 beterraba ralada",
-        "1 cenoura ralada",
-        "1 cebola picada",
-        "3 dentes de alho",
-        "1 chávena de aveia em flocos",
-        "Salsa picada",
-        "1 colher de cominho",
-        "Sal e pimenta q.b.",
-        "Azeite para grelhar"
-      ],
-      modoPreparo: "1. Escorra bem o feijão e esmague\n2. Misture com os legumes ralados\n3. Adicione a aveia e temperos\n4. Forme hambúrgueres\n5. Grelhe em azeite até dourar\n6. Sirva em pão com acompanhamentos",
-      informacoesNutricionais: {
-        calorias: "180",
-        gorduras: "3g",
-        gordurasSaturadas: "0.4g",
-        carboidratos: "30g",
-        proteinas: "9g",
-        fibras: "8g",
-        sodio: "240mg"
-      },
-      dicas: [
-        "Deixe a massa descansar 30 minutos antes de formar os hambúrgueres",
-        "Pode congelar antes de grelhar",
-        "Sirva com guacamole para mais nutrientes"
-      ]
-    },
-    {
-      nome: "Bacalhau à Gomes de Sá",
-      tempoPreparo: "60 minutos",
-      prepTime: "PT20M",
-      cookTime: "PT40M",
-      totalTime: "PT60M",
-      porcoes: "6 porções",
-      dificuldade: "Médio",
-      categoria: "onivoro",
-      imagem: "https://source.unsplash.com/featured/?codfish",
-      ingredientes: [
-        "800g de bacalhau demolhado",
-        "1kg de batatas",
-        "4 ovos cozidos",
-        "3 cebolas grandes",
-        "4 dentes de alho",
-        "Azeitonas pretas q.b.",
-        "Salsa picada q.b.",
-        "Azeite q.b.",
-        "Sal e pimenta q.b."
-      ],
-      modoPreparo: "1. Coza o bacalhau e desfie\n2. Coza as batatas em rodelas\n3. Refogue cebola e alho em azeite\n4. Monte em camadas: batatas, bacalhau, cebola\n5. Regue com azeite\n6. Leve ao forno por 20 minutos\n7. Decore com ovos e azeitonas",
-      informacoesNutricionais: {
-        calorias: "420",
-        gorduras: "18g",
-        gordurasSaturadas: "3g",
         carboidratos: "35g",
-        proteinas: "38g",
-        fibras: "4g",
-        sodio: "580mg"
-      }
+        gorduras: "16g",
+        fibras: "9g",
+        sodio: "280mg"
+      },
+      dicas: [
+        "Use grão de bico cozido al dente para melhor textura",
+        "As especiarias podem ser ajustadas ao seu gosto",
+        "Guarde as sobras na geladeira por até 3 dias"
+      ],
+      beneficiosSaude: [
+        "Rico em proteínas e fibras",
+        "Propriedades anti-inflamatórias da cúrcuma",
+        "Fonte de ferro e vitaminas do complexo B",
+        "Baixo índice glicêmico"
+      ]
     },
+
+    // Novas Receitas Vegetarianas
     {
-      nome: "Ratatouille",
+      nome: "Torta de Espinafre",
       tempoPreparo: "50 minutos",
-      prepTime: "PT20M",
-      cookTime: "PT30M",
-      totalTime: "PT50M",
-      porcoes: "4 porções",
+      porcoes: "8 fatias",
       dificuldade: "Médio",
-      categoria: "vegano",
-      imagem: "https://source.unsplash.com/featured/?ratatouille",
+      dieta: "vegetariano",
+      imagem: "https://loremflickr.com/800/600/spinach,pie",
       ingredientes: [
-        "2 berinjelas",
-        "3 abobrinhas",
-        "2 pimentões coloridos",
-        "4 tomates maduros",
-        "1 cebola grande",
-        "4 dentes de alho",
-        "Ervas de Provence",
-        "Azeite q.b.",
-        "Sal e pimenta q.b."
+        "Massa de torta",
+        "500g de espinafre",
+        "3 ovos",
+        "Queijo ralado",
+        "Cebola e alho",
+        "Temperos"
       ],
-      modoPreparo: "1. Corte os legumes em rodelas finas\n2. Prepare o molho de tomate com cebola e alho\n3. Disponha os legumes em camadas circulares\n4. Tempere com ervas e azeite\n5. Asse por 30 minutos coberto\n6. Finalize sem tampa por 10 minutos",
-      informacoesNutricionais: {
-        calorias: "180",
-        gorduras: "8g",
-        gordurasSaturadas: "1g",
-        carboidratos: "24g",
-        proteinas: "5g",
-        fibras: "8g",
-        sodio: "220mg"
-      }
+      modoPreparo: "1. Prepare a massa\n2. Refogue o recheio\n3. Monte e asse"
     },
     {
-      nome: "Paella Vegetariana",
-      tempoPreparo: "45 minutos",
-      prepTime: "PT15M",
-      cookTime: "PT30M",
-      totalTime: "PT45M",
-      porcoes: "6 porções",
-      dificuldade: "Médio",
-      categoria: "vegetariano",
-      imagem: "https://source.unsplash.com/featured/?paella",
-      ingredientes: [
-        "2 xícaras de arroz bomba",
-        "4 xícaras de caldo de legumes",
-        "1 pimentão vermelho",
-        "1 pimentão verde",
-        "1 abobrinha",
-        "200g de ervilhas",
-        "Açafrão",
-        "2 dentes de alho",
-        "1 cebola",
-        "Azeite q.b.",
-        "Sal e pimenta q.b."
-      ],
-      modoPreparo: "1. Refogue cebola e alho\n2. Adicione os pimentões e abobrinha\n3. Junte o arroz e açafrão\n4. Adicione o caldo quente\n5. Cozinhe sem mexer\n6. Adicione as ervilhas no final",
-      informacoesNutricionais: {
-        calorias: "310",
-        gorduras: "6g",
-        gordurasSaturadas: "1g",
-        carboidratos: "56g",
-        proteinas: "8g",
-        fibras: "6g",
-        sodio: "280mg"
-      }
-    },
-    {
-      nome: "Arroz Doce",
-      tempoPreparo: "40 minutos",
-      prepTime: "PT10M",
-      cookTime: "PT30M",
-      totalTime: "PT40M",
-      porcoes: "6 porções",
-      dificuldade: "Fácil",
-      categoria: "vegetariano",
-      imagem: "https://source.unsplash.com/featured/?rice,pudding",
-      ingredientes: [
-        "2 chávenas de arroz",
-        "1 litro de leite",
-        "2 paus de canela",
-        "Casca de 1 limão",
-        "200g de açúcar",
-        "3 gemas",
-        "Canela em pó q.b."
-      ],
-      modoPreparo: "1. Coza o arroz com água, canela e limão\n2. Adicione o leite e deixe absorver\n3. Junte o açúcar\n4. Retire do lume e adicione as gemas\n5. Polvilhe com canela",
-      informacoesNutricionais: {
-        calorias: "280",
-        gorduras: "5g",
-        gordurasSaturadas: "2g",
-        carboidratos: "52g",
-        proteinas: "7g",
-        fibras: "1g",
-        sodio: "85mg"
-      }
-    },
-    {
-      nome: "Sopa de Abóbora",
-      tempoPreparo: "35 minutos",
-      prepTime: "PT10M",
-      cookTime: "PT25M",
-      totalTime: "PT35M",
+      nome: "Penne ao Molho Rose",
+      tempoPreparo: "30 minutos",
       porcoes: "4 porções",
       dificuldade: "Fácil",
-      categoria: "vegano",
-      imagem: "https://source.unsplash.com/featured/?pumpkin,soup",
+      dieta: "vegetariano",
+      imagem: "https://loremflickr.com/800/600/pasta,rose",
       ingredientes: [
-        "1 abóbora média",
-        "2 cenouras",
-        "1 cebola",
-        "2 dentes de alho",
-        "Gengibre fresco q.b.",
-        "Leite de coco (opcional)",
-        "Azeite",
-        "Sal e pimenta q.b."
+        "500g de penne",
+        "Molho de tomate",
+        "Creme de leite",
+        "Queijo parmesão",
+        "Manjericão"
       ],
-      modoPreparo: "1. Corte os legumes em cubos\n2. Refogue cebola e alho\n3. Adicione abóbora e cenoura\n4. Cubra com água e cozinhe\n5. Triture tudo\n6. Finalize com leite de coco",
-      informacoesNutricionais: {
-        calorias: "160",
-        gorduras: "7g",
-        gordurasSaturadas: "3g",
-        carboidratos: "22g",
-        proteinas: "3g",
-        fibras: "4g",
-        sodio: "180mg"
-      }
-    },
-    {
-      nome: "Francesinha Vegetariana",
-      tempoPreparo: "45 minutos",
-      prepTime: "PT15M",
-      cookTime: "PT30M",
-      totalTime: "PT45M",
-      porcoes: "2 porções",
-      dificuldade: "Médio",
-      categoria: "vegetariano",
-      imagem: "https://source.unsplash.com/featured/?sandwich",
-      ingredientes: [
-        "4 fatias de pão de forma",
-        "2 hambúrgueres vegetais",
-        "4 fatias de queijo",
-        "Molho de tomate picante",
-        "200ml de cerveja",
-        "1 cebola",
-        "2 dentes de alho",
-        "Mostarda",
-        "Batatas fritas para acompanhar"
-      ],
-      modoPreparo: "1. Prepare o molho com cerveja e tomate\n2. Grelhe os hambúrgueres\n3. Monte o sanduíche em camadas\n4. Cubra com queijo\n5. Regue com o molho quente",
-      informacoesNutricionais: {
-        calorias: "580",
-        gorduras: "28g",
-        gordurasSaturadas: "12g",
-        carboidratos: "62g",
-        proteinas: "22g",
-        fibras: "4g",
-        sodio: "980mg"
-      }
-    },
-    {
-      nome: "Moqueca de Banana da Terra",
-      tempoPreparo: "40 minutos",
-      prepTime: "PT15M",
-      cookTime: "PT25M",
-      totalTime: "PT40M",
-      porcoes: "4 porções",
-      dificuldade: "Fácil",
-      categoria: "vegano",
-      imagem: "https://source.unsplash.com/featured/?plantain,stew",
-      ingredientes: [
-        "4 bananas da terra maduras",
-        "2 tomates maduros",
-        "1 pimentão vermelho",
-        "1 cebola grande",
-        "400ml de leite de coco",
-        "2 dentes de alho",
-        "Coentro fresco",
-        "Azeite de dendê",
-        "Sal e pimenta q.b."
-      ],
-      modoPreparo: "1. Corte as bananas em rodelas grossas\n2. Refogue cebola e alho\n3. Adicione tomate e pimentão\n4. Junte o leite de coco\n5. Acrescente as bananas\n6. Cozinhe por 15 minutos\n7. Finalize com dendê e coentro",
-      informacoesNutricionais: {
-        calorias: "280",
-        gorduras: "14g",
-        gordurasSaturadas: "8g",
-        carboidratos: "38g",
-        proteinas: "4g",
-        fibras: "5g",
-        sodio: "180mg"
-      }
-    },
-    {
-      nome: "Feijoada Vegana",
-      tempoPreparo: "90 minutos",
-      prepTime: "PT30M",
-      cookTime: "PT60M",
-      totalTime: "PT90M",
-      porcoes: "6 porções",
-      dificuldade: "Médio",
-      categoria: "vegano",
-      imagem: "https://source.unsplash.com/featured/?beans,stew",
-      ingredientes: [
-        "500g de feijão preto",
-        "200g de proteína de soja texturizada",
-        "2 cenouras em cubos",
-        "2 batatas em cubos",
-        "1 cebola grande",
-        "4 dentes de alho",
-        "2 folhas de louro",
-        "Azeite",
-        "Sal e pimenta q.b.",
-        "Couve para acompanhar",
-        "Farofa vegana",
-        "Laranja"
-      ],
-      modoPreparo: "1. Deixe o feijão de molho\n2. Hidrate a proteína de soja\n3. Refogue cebola e alho\n4. Cozinhe o feijão com louro\n5. Adicione os legumes\n6. Junte a proteína de soja\n7. Cozinhe até todos os ingredientes estarem macios",
-      informacoesNutricionais: {
-        calorias: "320",
-        gorduras: "6g",
-        gordurasSaturadas: "0.8g",
-        carboidratos: "48g",
-        proteinas: "22g",
-        fibras: "12g",
-        sodio: "280mg"
-      }
-    },
-    {
-      nome: "Torta de Maçã Vegana",
-      tempoPreparo: "60 minutos",
-      prepTime: "PT20M",
-      cookTime: "PT40M",
-      totalTime: "PT60M",
-      porcoes: "8 porções",
-      dificuldade: "Médio",
-      categoria: "vegano",
-      imagem: "https://source.unsplash.com/featured/?apple,pie",
-      ingredientes: [
-        "3 maçãs grandes",
-        "200g de farinha integral",
-        "100g de açúcar mascavo",
-        "100ml de óleo de coco",
-        "60ml de água gelada",
-        "1 colher de canela",
-        "Suco de 1/2 limão",
-        "Pitada de sal"
-      ],
-      modoPreparo: "1. Prepare a massa com farinha, óleo e água\n2. Corte as maçãs em fatias finas\n3. Tempere com limão, açúcar e canela\n4. Forre uma forma com a massa\n5. Disponha as maçãs\n6. Asse por 40 minutos",
-      informacoesNutricionais: {
-        calorias: "260",
-        gorduras: "12g",
-        gordurasSaturadas: "8g",
-        carboidratos: "36g",
-        proteinas: "3g",
-        fibras: "4g",
-        sodio: "120mg"
-      }
+      modoPreparo: "1. Cozinhe a massa\n2. Prepare o molho\n3. Misture e sirva"
     }
   ]
 
