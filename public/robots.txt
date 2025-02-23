@@ -9,7 +9,7 @@ Disallow: /api/
 Disallow: /_next/
 
 # Sitemap
-Sitemap: https://receitadodia.com/sitemap.xml
+Sitemap: https://receitadodia.vercel.app/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 10

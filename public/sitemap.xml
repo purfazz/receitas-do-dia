@@ -1,31 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://receitadodia.com</loc>
+    <loc>https://receitadodia.vercel.app</loc>
     <lastmod>2024-03-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://receitadodia.com/receitas</loc>
+    <loc>https://receitadodia.vercel.app/receitas</loc>
     <lastmod>2024-03-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://receitadodia.com/dicas-culinarias</loc>
+    <loc>https://receitadodia.vercel.app/receitas/veganas</loc>
+    <lastmod>2024-03-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://receitadodia.vercel.app/receitas/vegetarianas</loc>
+    <lastmod>2024-03-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://receitadodia.vercel.app/receitas/fitness</loc>
+    <lastmod>2024-03-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://receitadodia.vercel.app/dicas-culinarias</loc>
     <lastmod>2024-03-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://receitadodia.com/sobre</loc>
+    <loc>https://receitadodia.vercel.app/sobre</loc>
     <lastmod>2024-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://receitadodia.com/privacidade</loc>
+    <loc>https://receitadodia.vercel.app/privacidade</loc>
     <lastmod>2024-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
