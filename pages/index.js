@@ -994,6 +994,122 @@ export async function getStaticProps() {
         "Manjericão"
       ],
       modoPreparo: "1. Cozinhe a massa\n2. Prepare o molho\n3. Misture e sirva"
+    },
+
+    // Novas Receitas Fitness
+    {
+      nome: "Bowl de Açaí Proteico",
+      tempoPreparo: "10 minutos",
+      porcoes: "2 porções",
+      dificuldade: "Fácil",
+      dieta: "vegano",
+      imagem: "https://source.unsplash.com/featured/?acai,bowl",
+      ingredientes: [
+        "400g de polpa de açaí",
+        "1 banana congelada",
+        "30g de whey protein vegano",
+        "200ml de leite de amêndoas",
+        "Granola low carb",
+        "Frutas vermelhas",
+        "Sementes de chia",
+        "Mel (opcional)"
+      ],
+      modoPreparo: "1. No liquidificador, bata o açaí, banana e leite\n2. Adicione o whey protein e bata novamente\n3. Despeje em bowls\n4. Decore com granola, frutas e sementes",
+      informacoesNutricionais: {
+        calorias: "320 kcal por porção",
+        proteinas: "24g",
+        carboidratos: "42g",
+        gorduras: "12g",
+        fibras: "8g",
+        sodio: "80mg"
+      },
+      dicas: [
+        "Use frutas congeladas para textura mais cremosa",
+        "Prepare a granola em casa para controlar o açúcar",
+        "Adicione colágeno em pó para mais proteína"
+      ],
+      beneficiosSaude: [
+        "Rico em antioxidantes",
+        "Alto teor de proteínas",
+        "Ótimo pré ou pós treino",
+        "Fonte de energia natural"
+      ]
+    },
+    {
+      nome: "Omelete Fit de Claras",
+      tempoPreparo: "15 minutos",
+      porcoes: "1 porção",
+      dificuldade: "Fácil",
+      dieta: "vegetariano",
+      imagem: "https://source.unsplash.com/featured/?omelette",
+      ingredientes: [
+        "4 claras de ovo",
+        "1 tomate picado",
+        "1/2 cebola picada",
+        "Espinafre fresco",
+        "Queijo cottage",
+        "Sal e pimenta a gosto",
+        "Orégano",
+        "Azeite de oliva"
+      ],
+      modoPreparo: "1. Bata as claras até ficarem espumosas\n2. Adicione os temperos\n3. Aqueça uma frigideira antiaderente\n4. Despeje as claras e adicione os recheios\n5. Cozinhe em fogo médio\n6. Dobre ao meio e sirva",
+      informacoesNutricionais: {
+        calorias: "180 kcal",
+        proteinas: "22g",
+        carboidratos: "6g",
+        gorduras: "8g",
+        fibras: "2g",
+        sodio: "320mg"
+      },
+      dicas: [
+        "Use frigideira antiaderente para não precisar de muito óleo",
+        "Adicione ervas frescas para mais sabor",
+        "Prepare os recheios antes de começar"
+      ],
+      beneficiosSaude: [
+        "Alto teor de proteína",
+        "Baixo em gorduras",
+        "Rico em vitaminas",
+        "Ideal para dietas"
+      ]
+    },
+    {
+      nome: "Brownie Proteico de Batata Doce",
+      tempoPreparo: "45 minutos",
+      porcoes: "12 porções",
+      dificuldade: "Médio",
+      dieta: "vegetariano",
+      imagem: "https://source.unsplash.com/featured/?brownie",
+      ingredientes: [
+        "2 batatas doces médias cozidas",
+        "4 ovos",
+        "1/2 xícara de cacau em pó",
+        "2 scoops de whey protein chocolate",
+        "3 colheres de sopa de mel",
+        "1 colher de chá de fermento",
+        "Essência de baunilha",
+        "Canela em pó"
+      ],
+      modoPreparo: "1. Pré-aqueça o forno a 180°C\n2. Amasse as batatas doces\n3. Misture com ovos, mel e baunilha\n4. Adicione cacau, whey e canela\n5. Por último, coloque o fermento\n6. Asse em forma untada por 25-30 minutos",
+      informacoesNutricionais: {
+        calorias: "120 kcal por porção",
+        proteinas: "8g",
+        carboidratos: "15g",
+        gorduras: "4g",
+        fibras: "3g",
+        sodio: "45mg"
+      },
+      dicas: [
+        "Não bata demais a massa após adicionar o fermento",
+        "Faça o teste do palito para verificar o ponto",
+        "Guarde na geladeira por até 5 dias"
+      ],
+      beneficiosSaude: [
+        "Fonte de proteína e fibras",
+        "Carboidratos complexos",
+        "Sem açúcar refinado",
+        "Rico em betacaroteno"
+      ]
     }
   ]
 
