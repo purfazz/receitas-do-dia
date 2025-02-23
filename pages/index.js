@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { Box, Button, Container, Heading, Text, VStack, useColorModeValue, SimpleGrid, List, ListItem, HStack, Link } from '@chakra-ui/react'
 import { useState } from 'react'
 import AdComponent from '../components/AdComponent'
+import AdsterraAd from '../components/AdsterraAd'
 import CTASection from '../components/CTASection'
 import IngredientTips from '../components/IngredientTips'
 import NewsletterForm from '../components/NewsletterForm'
@@ -588,6 +589,101 @@ export default function Home({ receitas }) {
               </Text>
             </Box>
 
+            {/* Nova Seção: Dicas Culinárias */}
+            <Box w="full" p={6} bg={cardBg} borderRadius="xl" boxShadow="xl">
+              <Heading as="h2" size="lg" mb={4} color="teal.500">
+                Dicas Culinárias Essenciais
+              </Heading>
+              <VStack spacing={4} align="stretch">
+                <Box>
+                  <Heading as="h3" size="md" mb={2} color="teal.400">
+                    Preparação e Organização
+                  </Heading>
+                  <Text>
+                    Antes de começar qualquer receita, leia-a completamente e separe todos os ingredientes e utensílios necessários. 
+                    Esta prática, conhecida como "mise en place", é fundamental para um processo de cozimento tranquilo e bem-sucedido. 
+                    Mantenha sua área de trabalho limpa e organizada para maior eficiência e segurança na cozinha.
+                  </Text>
+                </Box>
+                <Box>
+                  <Heading as="h3" size="md" mb={2} color="teal.400">
+                    Técnicas de Corte
+                  </Heading>
+                  <Text>
+                    Desenvolver boas habilidades com a faca é essencial para qualquer cozinheiro. Mantenha suas facas sempre afiadas 
+                    e aprenda as técnicas básicas de corte: julienne, brunoise, chiffonade e corte em cubos. Isso não só melhorará 
+                    a apresentação dos seus pratos, mas também garantirá um cozimento mais uniforme dos ingredientes.
+                  </Text>
+                </Box>
+                <Box>
+                  <Heading as="h3" size="md" mb={2} color="teal.400">
+                    Temperos e Sabores
+                  </Heading>
+                  <Text>
+                    A arte de temperar vai além do sal e pimenta. Experimente diferentes ervas e especiarias, mas adicione-as 
+                    gradualmente para não sobrecarregar o prato. Lembre-se: você sempre pode adicionar mais tempero, mas é 
+                    impossível removê-lo depois de exagerar. Aprenda a equilibrar os sabores básicos: doce, salgado, ácido, 
+                    amargo e umami.
+                  </Text>
+                </Box>
+              </VStack>
+            </Box>
+
+            {/* Nova Seção: Benefícios da Alimentação Saudável */}
+            <Box w="full" p={6} bg={cardBg} borderRadius="xl" boxShadow="xl">
+              <Heading as="h2" size="lg" mb={4} color="teal.500">
+                Benefícios da Alimentação Saudável
+              </Heading>
+              <VStack spacing={4} align="stretch">
+                <Box>
+                  <Heading as="h3" size="md" mb={2} color="teal.400">
+                    Saúde e Bem-estar
+                  </Heading>
+                  <Text>
+                    Uma alimentação equilibrada é fundamental para manter a saúde do corpo e da mente. Consumir uma variedade 
+                    de alimentos nutritivos ajuda a fortalecer o sistema imunológico, manter os níveis de energia estáveis e 
+                    prevenir diversas doenças. Além disso, uma dieta saudável contribui para melhor qualidade do sono, humor 
+                    mais estável e maior disposição para atividades diárias.
+                  </Text>
+                </Box>
+                <Box>
+                  <Heading as="h3" size="md" mb={2} color="teal.400">
+                    Sustentabilidade
+                  </Heading>
+                  <Text>
+                    Optar por uma alimentação consciente também beneficia o meio ambiente. Escolher ingredientes locais e 
+                    sazonais reduz a pegada de carbono, enquanto diminuir o consumo de alimentos ultraprocessados ajuda a 
+                    reduzir o impacto ambiental da produção alimentícia. Além disso, planejar refeições ajuda a evitar o 
+                    desperdício de alimentos.
+                  </Text>
+                </Box>
+                <Box>
+                  <Heading as="h3" size="md" mb={2} color="teal.400">
+                    Aspectos Sociais
+                  </Heading>
+                  <Text>
+                    Cozinhar e compartilhar refeições são atividades que fortalecem laços sociais e familiares. Preparar 
+                    uma refeição saudável pode ser uma atividade prazerosa e relaxante, além de ser uma oportunidade de 
+                    transmitir conhecimentos culinários entre gerações e criar memórias afetivas duradouras.
+                  </Text>
+                </Box>
+              </VStack>
+            </Box>
+
+            {/* Nova Seção: Recursos Adicionais */}
+            <Box w="full" p={6} bg={cardBg} borderRadius="xl" boxShadow="xl">
+              <Heading as="h2" size="lg" mb={4} color="teal.500">
+                Recursos Adicionais
+              </Heading>
+              <Text>
+                Para mais informações sobre monetização e anúncios, visite o site da Adsterra: 
+                <Link color="teal.500" href="https://www.effectiveratecpm.com/btedt3hxme?key=13288d358fbf97b949e5cb98f2ef2355" isExternal>
+                  Adsterra
+                </Link>.
+              </Text>
+            </Box>
+
+            <AdsterraAd />
             <AdComponent />
           </VStack>
         </Container>
