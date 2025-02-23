@@ -39,14 +39,48 @@ export default function Home({ receitas }) {
     <>
       <Head>
         <title>Receita do Dia - Descubra Receitas Deliciosas e Saudáveis</title>
-        <meta name="description" content="Explore receitas deliciosas, saudáveis e fáceis de fazer. Receitas veganas, vegetarianas e tradicionais com dicas do chef, informações nutricionais e benefícios para a saúde." />
-        <meta name="keywords" content="receitas, culinária, receitas saudáveis, receitas veganas, receitas vegetarianas, dicas de culinária, gastronomia" />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Descubra receitas deliciosas e saudáveis todos os dias. Receitas veganas, vegetarianas e tradicionais com dicas exclusivas de chefs, informações nutricionais detalhadas e benefícios para a saúde. Aprenda a cozinhar pratos incríveis!" />
+        <meta name="keywords" content="receitas, culinária, receitas saudáveis, receitas veganas, receitas vegetarianas, dicas de culinária, gastronomia, receitas brasileiras, receitas fáceis, receitas rápidas, receitas fitness, receitas low carb" />
+        <meta name="author" content="Receita do Dia" />
+        <meta name="language" content="pt-BR" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        
+        {/* Open Graph / Facebook */}
         <meta property="og:title" content="Receita do Dia - Descubra Receitas Deliciosas e Saudáveis" />
-        <meta property="og:description" content="Explore receitas deliciosas, saudáveis e fáceis de fazer. Receitas veganas, vegetarianas e tradicionais com dicas do chef." />
+        <meta property="og:description" content="Explore receitas deliciosas, saudáveis e fáceis de fazer. Receitas veganas, vegetarianas e tradicionais com dicas exclusivas de chefs profissionais." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://receitadodia.com" />
-        <meta name="robots" content="index, follow" />
+        <meta property="og:image" content="https://receitadodia.com/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="pt_BR" />
+        <meta property="og:site_name" content="Receita do Dia" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Receita do Dia - Receitas Deliciosas e Saudáveis" />
+        <meta name="twitter:description" content="Descubra receitas incríveis todos os dias. Receitas veganas, vegetarianas e tradicionais com dicas de chefs." />
+        <meta name="twitter:image" content="https://receitadodia.com/twitter-image.jpg" />
+        
+        {/* Canonical URL */}
         <link rel="canonical" href="https://receitadodia.com" />
+        
+        {/* Favicons */}
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        
+        {/* Manifest */}
+        <link rel="manifest" href="/site.webmanifest" />
+        
+        {/* Preconnect to required origins */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        
+        {/* Structured Data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
